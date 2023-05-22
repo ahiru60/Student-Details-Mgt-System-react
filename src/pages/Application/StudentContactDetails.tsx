@@ -1,12 +1,60 @@
 import Form from "react-bootstrap/esm/Form";
 import { FormWrapper } from "./FormWrapper";
 
-export function StudentContactDetails(){
+type userData = {
+    
+  countryOrRegion: string,
+    stateProvince: string,
+    citySuburb: string,
+    addressLine1: string,
+    addressLine2: string,
+    addressLine3: string,
+    postalCode: string,
+    differentPostalCheck: string,
+    postalCountryOrRegion: string,
+    postalStateProvince: string,
+    postalCitySuburb: string,
+    postalAddressLine1: string,
+    postalAddressLine2: string,
+    postalAddressLine3: string,
+    postalPostalCode: string,
+    postalMobileNumber: string,
+    postalLandlineNumber: string
+}
+
+type ContactDetailsProps = userData & {
+
+  updateFields: (fields: Partial<userData>) => void
+
+}
+
+export function StudentContactDetails({
+
+    countryOrRegion,
+    stateProvince,
+    citySuburb,
+    addressLine1,
+    addressLine2,
+    addressLine3,
+    postalCode,
+    differentPostalCheck,
+    postalCountryOrRegion,
+    postalStateProvince,
+    postalCitySuburb,
+    postalAddressLine1,
+    postalAddressLine2,
+    postalAddressLine3,
+    postalPostalCode,
+    postalMobileNumber,
+    postalLandlineNumber,
+    updateFields
+
+  } : ContactDetailsProps){
    return(<FormWrapper title="CONTACT DETAILS">
     <h4>Permanent Address</h4>
     <Form.Group>
             <Form.Label>Country and Region:</Form.Label>
-            <Form.Control as="select" name="countryOrRegion"required>
+            <Form.Control as="select" name="countryOrRegion" value={countryOrRegion} onChange={e=> updateFields({countryOrRegion:e.target.value})} required>
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Aland Islands">Aland Islands</option>
                 <option value="Albania">Albania</option>
@@ -264,45 +312,45 @@ export function StudentContactDetails(){
     
           <Form.Group>
             <Form.Label>State/Province:</Form.Label>
-            <Form.Control type="text" name="stateProvince" required/>
+            <Form.Control type="text" name="stateProvince" value={stateProvince} onChange={e=> updateFields({stateProvince:e.target.value})} required/>
           </Form.Group>
     
           <Form.Group>
             <Form.Label>City/Suburb:</Form.Label>
-            <Form.Control type="text" name="citySuburb" required/>
+            <Form.Control type="text" name="citySuburb" value={citySuburb} onChange={e=> updateFields({citySuburb:e.target.value})} required/>
           </Form.Group>
     
           <Form.Group>
             <Form.Label>Address Line 1:</Form.Label>
-            <Form.Control type="text" name="addressLine1" required/>
+            <Form.Control type="text" name="addressLine1" value={addressLine1} onChange={e=> updateFields({addressLine1:e.target.value})} required/>
           </Form.Group>
     
           <Form.Group>
             <Form.Label>Address Line 2:</Form.Label>
-            <Form.Control type="text" name="addressLine2" />
+            <Form.Control type="text" name="addressLine2" value={addressLine2} onChange={e=> updateFields({addressLine2:e.target.value})} />
           </Form.Group>
     
           <Form.Group>
             <Form.Label>Address Line 3:</Form.Label>
-            <Form.Control type="text" name="addressLine3" />
+            <Form.Control type="text" name="addressLine3" value={addressLine3} onChange={e=> updateFields({addressLine3:e.target.value})} />
           </Form.Group>
     
           <Form.Group>
             <Form.Label>Postal Code:</Form.Label>
-            <Form.Control type="text" name="postalCode" required/>
+            <Form.Control type="text" name="postalCode" value={postalCode} onChange={e=> updateFields({postalCode:e.target.value})} required/>
           </Form.Group>
 
           <Form.Group>
                 <Form.Label>Do you have a different postal address?</Form.Label>
                 <div>
-                    <Form.Check inline label="Yes" type="radio" name="different postal check" value="yes" required/>
-                    <Form.Check inline label="No" type="radio" name="different postal check" value="no" />
+                    <Form.Check inline label="Yes" type="radio" name="different postal check" value="yes" checked={differentPostalCheck === 'yes'} onChange={e=> updateFields({differentPostalCheck:e.target.value})} required/>
+                    <Form.Check inline label="No" type="radio" name="different postal check" value="no" checked={differentPostalCheck === 'no'} onChange={e=> updateFields({differentPostalCheck:e.target.value})} />
                 </div>
             </Form.Group>
 
             <Form.Group>
             <Form.Label>Country and Region:</Form.Label>
-            <Form.Control as="select" name="postal countryOrRegion">
+            <Form.Control as="select" name="postal countryOrRegion" value={postalCountryOrRegion} onChange={e=> updateFields({postalCountryOrRegion:e.target.value})}>
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Aland Islands">Aland Islands</option>
                 <option value="Albania">Albania</option>
@@ -560,42 +608,42 @@ export function StudentContactDetails(){
     
           <Form.Group>
             <Form.Label>State/Province:</Form.Label>
-            <Form.Control type="text" name="postal stateProvince"/>
+            <Form.Control type="text" name="postal stateProvince" value={postalStateProvince} onChange={e=> updateFields({postalStateProvince:e.target.value})}/>
           </Form.Group>
     
           <Form.Group>
             <Form.Label>City/Suburb:</Form.Label>
-            <Form.Control type="text" name="postal citySuburb"/>
+            <Form.Control type="text" name="postal citySuburb" value={postalCitySuburb} onChange={e=> updateFields({postalCitySuburb:e.target.value})}/>
           </Form.Group>
     
           <Form.Group>
             <Form.Label>Address Line 1:</Form.Label>
-            <Form.Control type="text" name="postal addressLine1"/>
+            <Form.Control type="text" name="postal addressLine1" value={postalAddressLine1} onChange={e=> updateFields({postalAddressLine1:e.target.value})}/>
           </Form.Group>
     
           <Form.Group>
             <Form.Label>Address Line 2:</Form.Label>
-            <Form.Control type="text" name="postal addressLine2" />
+            <Form.Control type="text" name="postal addressLine2" value={postalAddressLine2} onChange={e=> updateFields({postalAddressLine2:e.target.value})} />
           </Form.Group>
     
           <Form.Group>
             <Form.Label>Address Line 3:</Form.Label>
-            <Form.Control type="text" name="postal addressLine3" />
+            <Form.Control type="text" name="postal addressLine3" value={postalAddressLine3} onChange={e=> updateFields({postalAddressLine3:e.target.value})} />
           </Form.Group>
     
           <Form.Group>
             <Form.Label>Postal Code:</Form.Label>
-            <Form.Control type="text" name="postal postalCode"/>
+            <Form.Control type="text" name="postal postalCode" value={postalPostalCode} onChange={e=> updateFields({postalPostalCode:e.target.value})}/>
           </Form.Group>
     
           <Form.Group>
             <Form.Label>Mobile Phone Number:</Form.Label>
-            <Form.Control type="text" name="postal mobileNumber" />
+            <Form.Control type="text" name="postal mobileNumber" value={postalMobileNumber} onChange={e=> updateFields({postalMobileNumber:e.target.value})} />
           </Form.Group>
     
           <Form.Group>
             <Form.Label>Landline Number:</Form.Label>
-            <Form.Control type="text" name="postal landlineNumber" />
+            <Form.Control type="text" name="postal landlineNumber" value={postalLandlineNumber} onChange={e=> updateFields({postalLandlineNumber:e.target.value})} />
           </Form.Group>
     </FormWrapper>)
 }

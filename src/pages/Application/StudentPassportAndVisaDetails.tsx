@@ -1,18 +1,57 @@
 import Form from "react-bootstrap/esm/Form";
 import { FormWrapper } from "./FormWrapper";
 
-export function StudentPassportAndVisaDetails(){
+type userData = {
+
+  nationality: string,
+  countryOfBirth: string,
+  passportNumber: string,
+  passportIssueDate: string,
+  passportExpiryDate: string,
+  visitedOrStudiedInAus: string,
+  holdingAusVisa: string,
+  holdingAusVisaGrantNumber: string,
+  ausVisaBreach: string,
+  ausVisaRefuse: string,
+  protectionVisa: string,
+  criminalOffence: string
+  
+}
+
+type PassportAndVisaDetailsProps = userData & {
+
+  updateFields: (fields: Partial<userData>) => void
+
+}
+
+export function StudentPassportAndVisaDetails({
+
+  nationality,
+  countryOfBirth,
+  passportNumber,
+  passportIssueDate,
+  passportExpiryDate,
+  visitedOrStudiedInAus,
+  holdingAusVisa,
+  holdingAusVisaGrantNumber,
+  ausVisaBreach,
+  ausVisaRefuse,
+  protectionVisa,
+  criminalOffence,
+  updateFields
+
+}:PassportAndVisaDetailsProps){
    return(
    <FormWrapper title="PASSPORT AND VISA DETAILS">
     
     <Form.Group>
       <Form.Label>Nationality (As per your passport):</Form.Label>
-      <Form.Control type="text" name="nationality" required/>
+      <Form.Control type="text" name="nationality" value={nationality} onChange={e=> updateFields({nationality:e.target.value})} required/>
     </Form.Group>
 
     <Form.Group>
       <Form.Label>Country of Birth:</Form.Label>
-      <Form.Control as="select" name="countryOfBirth" required>
+      <Form.Control as="select" name="countryOfBirth" value={countryOfBirth} onChange={e=> updateFields({countryOfBirth:e.target.value})}required>
           <option value="Afghanistan">Afghanistan</option>
           <option value="Aland Islands">Aland Islands</option>
           <option value="Albania">Albania</option>
@@ -270,69 +309,69 @@ export function StudentPassportAndVisaDetails(){
 
     <Form.Group>
       <Form.Label>Passport Number:</Form.Label>
-      <Form.Control type="text" name="passportNumber" required/>
+      <Form.Control type="text" name="passportNumber" value={passportNumber} onChange={e=> updateFields({passportNumber:e.target.value})}required/>
     </Form.Group>
 
     <Form.Group>
       <Form.Label>Passport Issue Date:</Form.Label>
-      <Form.Control type="date" name="passportIssueDate" required/>
+      <Form.Control type="date" name="passportIssueDate" value={passportIssueDate} onChange={e=> updateFields({passportIssueDate:e.target.value})}required/>
     </Form.Group>
 
     <Form.Group>
       <Form.Label>Passport Expiry Date:</Form.Label>
-      <Form.Control type="date" name="passportExpiryDate" required/>
+      <Form.Control type="date" name="passportExpiryDate" value={passportExpiryDate} onChange={e=> updateFields({passportExpiryDate:e.target.value})}required/>
     </Form.Group>
 
     <Form.Group>
       <Form.Label>Have you previously visited or studied in Australia?</Form.Label>
       <div>
-        <Form.Check inline label="Yes" type="radio" name="visitedOrStudiedInAus" value="yes" required/>
-        <Form.Check inline label="No" type="radio" name="visitedOrStudiedInAus" value="no" />
+        <Form.Check inline label="Yes" type="radio" name="visitedOrStudiedInAus" value="yes" checked={visitedOrStudiedInAus === 'yes'} onChange={e=> updateFields({visitedOrStudiedInAus:e.target.value})} required/>
+        <Form.Check inline label="No" type="radio" name="visitedOrStudiedInAus" value="no" checked={visitedOrStudiedInAus === 'no'} onChange={e=> updateFields({visitedOrStudiedInAus:e.target.value})} />
       </div>
     </Form.Group>
 
     <Form.Group>
       <Form.Label>Do you currently hold an Australian Visa?</Form.Label>
       <div>
-        <Form.Check inline label="Yes" type="radio" name="holdingAusVisa" value="yes" required/>
-        <Form.Check inline label="No" type="radio" name="holdingAusVisa" value="no" />
+        <Form.Check inline label="Yes" type="radio" name="holdingAusVisa" value="yes" checked={holdingAusVisa === 'yes'} onChange={e=> updateFields({holdingAusVisa:e.target.value})} required/>
+        <Form.Check inline label="No" type="radio" name="holdingAusVisa" value="no" checked={holdingAusVisa === 'no'} onChange={e=> updateFields({holdingAusVisa:e.target.value})} />
       </div>
     </Form.Group>
 
     <Form.Group>
       <Form.Label>If yes, Visa Grant Number:</Form.Label>
-      <Form.Control type="text" name="holdingAusVisaGrantNumber" />
+      <Form.Control type="text" name="holdingAusVisaGrantNumber" value={holdingAusVisaGrantNumber} onChange={e=> updateFields({holdingAusVisaGrantNumber:e.target.value})}/>
     </Form.Group>
 
     <Form.Group>
       <Form.Label>Have you had any previous Visa condition breaches?</Form.Label>
       <div>
-        <Form.Check inline label="Yes" type="radio" name="ausVisaBreach" value="yes" required/>
-        <Form.Check inline label="No" type="radio" name="ausVisaBreach" value="no" />
+        <Form.Check inline label="Yes" type="radio" name="ausVisaBreach" value="yes" checked={ausVisaBreach === 'yes'} onChange={e=> updateFields({ausVisaBreach:e.target.value})} required/>
+        <Form.Check inline label="No" type="radio" name="ausVisaBreach" value="no" checked={ausVisaBreach === 'no'} onChange={e=> updateFields({ausVisaBreach:e.target.value})} />
       </div>
     </Form.Group>
 
     <Form.Group>
       <Form.Label>Have you ever been refused a Visa for entry, had your visa cancelled, or overstayed your visa in Australia or another country?</Form.Label>
       <div>
-        <Form.Check inline label="Yes" type="radio" name="ausVisaRefuse" value="yes" required/>
-        <Form.Check inline label="No" type="radio" name="ausVisaRefuse" value="no" />
+        <Form.Check inline label="Yes" type="radio" name="ausVisaRefuse" value="yes" checked={ausVisaRefuse === 'yes'} onChange={e=> updateFields({ausVisaRefuse:e.target.value})} required/>
+        <Form.Check inline label="No" type="radio" name="ausVisaRefuse" value="no" checked={ausVisaRefuse === 'no'} onChange={e=> updateFields({ausVisaRefuse:e.target.value})} />
       </div>
     </Form.Group>
 
     <Form.Group>
       <Form.Label>Have you ever applied and/or received a protection visa in any country to date?</Form.Label>
       <div>
-        <Form.Check inline label="Yes" type="radio" name="protectionVisa" value="yes" required/>
-        <Form.Check inline label="No" type="radio" name="protectionVisa" value="no" />
+        <Form.Check inline label="Yes" type="radio" name="protectionVisa" value="yes" checked={protectionVisa === 'yes'} onChange={e=> updateFields({protectionVisa:e.target.value})} required/>
+        <Form.Check inline label="No" type="radio" name="protectionVisa" value="no" checked={protectionVisa === 'no'} onChange={e=> updateFields({protectionVisa:e.target.value})} />
       </div>
     </Form.Group>
 
     <Form.Group>
       <Form.Label>Have you ever been convicted of a criminal offence?</Form.Label>
       <div>
-        <Form.Check inline label="Yes" type="radio" name="criminalOffence" value="yes" required/>
-        <Form.Check inline label="No" type="radio" name="criminalOffence" value="no" />
+        <Form.Check inline label="Yes" type="radio" name="criminalOffence" value="yes" checked={criminalOffence === 'yes'} onChange={e=> updateFields({criminalOffence:e.target.value})} required/>
+        <Form.Check inline label="No" type="radio" name="criminalOffence" value="no" checked={criminalOffence === 'no'} onChange={e=> updateFields({criminalOffence:e.target.value})} />
       </div>
     </Form.Group>
    </FormWrapper>

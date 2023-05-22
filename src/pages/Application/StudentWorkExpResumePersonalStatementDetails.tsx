@@ -51,7 +51,7 @@ export function StudentWorkExpResumePersonalStatementDetails({
 <Form.Group>
   <Form.Label>Do you have any relevant work experience you'd like to be considered for admissions?</Form.Label>
   <div>
-    <Form.Check inline label="Yes" type="radio" name="relevantWorkExperienceCheck" value="yes" checked={relevantWorkExperienceCheck === 'yes'} onChange={e=> updateFields({relevantWorkExperienceCheck:e.target.value})}required/>
+    <Form.Check inline label="Yes" type="radio" name="relevantWorkExperienceCheck" value="yes" checked={relevantWorkExperienceCheck === 'yes'} onChange={e=> updateFields({relevantWorkExperienceCheck:e.target.value})} autoFocus required/>
     <Form.Check inline label="No" type="radio" name="relevantWorkExperienceCheck" value="no" checked={relevantWorkExperienceCheck === 'no'} onChange={e=> updateFields({relevantWorkExperienceCheck:e.target.value})}/>
   </div>
 </Form.Group>

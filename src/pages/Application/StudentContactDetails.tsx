@@ -54,7 +54,7 @@ export function StudentContactDetails({
     <h4>Permanent Address</h4>
     <Form.Group>
             <Form.Label>Country and Region:</Form.Label>
-            <Form.Control as="select" name="countryOrRegion" value={countryOrRegion} onChange={e=> updateFields({countryOrRegion:e.target.value})} required>
+            <Form.Control as="select" name="countryOrRegion" value={countryOrRegion} onChange={e=> updateFields({countryOrRegion:e.target.value})} autoFocus required>
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Aland Islands">Aland Islands</option>
                 <option value="Albania">Albania</option>

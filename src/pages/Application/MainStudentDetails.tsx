@@ -82,15 +82,15 @@ export function MainStudentDetails({
             
                 <div className="--bs-info --bs-info-rgb">
                 <Form.Group className="mb-3">
-            <Form.Label><p>Do you have a Monash student ID number?</p></Form.Label>
+            <Form.Label><p  >Do you have a Monash student ID number?</p></Form.Label>
             <div>
-                <Form.Check inline label="Yes" type="radio" name="monash-Id-check" value="yes" checked={monashIdCheck=== 'yes'} onChange={e=> updateFields({monashIdCheck:e.target.value}) } required />
-                <Form.Check inline label="No" type="radio" name="monash-Id-check" value="no" checked={monashIdCheck=== 'no'} onChange={e=> updateFields({monashIdCheck:e.target.value}) }/>
+                <Form.Check inline label="Yes" type="radio" name="monash-Id-check" value="yes" checked={monashIdCheck=== 'yes'} onChange={e=> updateFields({monashIdCheck:e.target.value}) } autoFocus required />
+                <Form.Check inline label="No" type="radio" name="monash-Id-check" value="no" checked={monashIdCheck=== 'no'} onChange={e=> updateFields({monashIdCheck:e.target.value}) } />
             </div>
         </Form.Group>
         <Form.Group className="mb-3">
                 <Form.Label>If YES, please state:</Form.Label>
-                <Form.Control type="text" name="monash-Id" value={monashId} onChange={e=> updateFields({monashId:e.target.value})}/>
+                <Form.Control type="text" name="monash-Id"  value={monashId} onChange={e=> updateFields({monashId:e.target.value})} />
             </Form.Group>
             <Form.Group>
                 <Form.Label>Are you a currently enrolled Monash student?</Form.Label>

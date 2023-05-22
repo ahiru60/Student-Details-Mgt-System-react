@@ -71,7 +71,7 @@ export function StudentFamilyImmigrationHistory({
    return(<FormWrapper title={"APPLICATION | FAMILY IMMIGRATION HISTORY"}><Form.Group>
       <Form.Label>Are you married?</Form.Label>
       <div>
-        <Form.Check inline label="Married" type="radio" name="maritalStatus" value="yes" checked={maritalStatus === 'yes'} onChange={e=> updateFields({maritalStatus:e.target.value})}required/>
+        <Form.Check inline label="Married" type="radio" name="maritalStatus" value="yes" checked={maritalStatus === 'yes'} onChange={e=> updateFields({maritalStatus:e.target.value})} autoFocus required/>
         <Form.Check inline label="Not Married" type="radio" name="maritalStatus" value="no" checked={maritalStatus === 'no'} onChange={e=> updateFields({maritalStatus:e.target.value})} />
       </div>
     </Form.Group>

@@ -251,21 +251,14 @@ function onSubmit(e:FormEvent){
           position:'relative',
           background:'white',
           border: '1px solid black',
-          padding:"3.3rem 10rem",margin:'1rem',
+          padding:"3.3rem 5rem", paddingBottom:"1rem",
+          margin:'4rem 10rem',
           borderRadius:'1rem', fontSize:'15px',
           maxWidth:'max -content'
           }}
         >
         <Form onSubmit={onSubmit}>
-          <div style={{
-            position:'absolute',
-            top:'.7rem',
-            right:'1rem',
-            fontSize:'1.1rem',
-            fontWeight:'700'
-          }}>
-            {currentStepIndex+1}/{steps.length}
-          </div>
+          
           {step}
           <div style={{
             marginTop:'1rem',
@@ -277,6 +270,17 @@ function onSubmit(e:FormEvent){
           {!isFirstStep && <button className='btn btn-outline-dark' type="button" onClick={back}>Back</button>}
     
           <button className={isLastStep ? 'btn btn-success': 'btn btn-dark' } type="submit">{!isLastStep ? 'Next':'Finish'}</button>
+          </div>
+          <div style={{
+            marginTop:"3rem",
+            position:'relative',
+            bottom:'.7rem',
+            display:'flex',
+            justifyContent:"center",
+            fontSize:'1.1rem',
+            fontWeight:'700'
+          }}>
+            {currentStepIndex+1}/{steps.length}
           </div>
         </Form>
         </div>

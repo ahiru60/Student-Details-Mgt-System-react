@@ -81,20 +81,20 @@ export function MainStudentDetails({
         <FormWrapper title={"APPLICATION | BASIC DETAILS"}>
             
                 <div className="--bs-info --bs-info-rgb">
-                <Form.Group className="mb-3">
+                <Form.Group className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
             <Form.Label><p  >Do you have a Monash student ID number?</p></Form.Label>
-            <div>
+            <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
                 <Form.Check inline label="Yes" type="radio" name="monash-Id-check" value="yes" checked={monashIdCheck=== 'yes'} onChange={e=> updateFields({monashIdCheck:e.target.value}) } autoFocus required />
                 <Form.Check inline label="No" type="radio" name="monash-Id-check" value="no" checked={monashIdCheck=== 'no'} onChange={e=> updateFields({monashIdCheck:e.target.value}) } />
             </div>
         </Form.Group>
-        <Form.Group className="mb-3">
+        <Form.Group className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
                 <Form.Label>If YES, please state:</Form.Label>
                 <Form.Control type="text" name="monash-Id"  value={monashId} onChange={e=> updateFields({monashId:e.target.value})} />
             </Form.Group>
             <Form.Group>
                 <Form.Label>Are you a currently enrolled Monash student?</Form.Label>
-                <div>
+                <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
                     <Form.Check inline label="Yes" type="checkbox" name="1monash-enrolled-check" value="yes" checked={monashEnrolledCheck=== 'yes'} onChange={e=> updateFields({monashEnrolledCheck:e.target.value})}/>
                     <Form.Check inline label="No" type="checkbox" name="monash-enrolled-check" value="no" checked={monashEnrolledCheck=== 'no'} onChange={e=> updateFields({monashEnrolledCheck:e.target.value})}/>
                 </div></Form.Group>
@@ -195,19 +195,19 @@ export function MainStudentDetails({
                 <Form.Control type="email" name="email" value={email} onChange={e=> updateFields({email:e.target.value})}required/>
             </Form.Group><Form.Group>
                 <Form.Label>Do you have a disability?</Form.Label>
-                <div>
+                <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
                     <Form.Check inline label="Yes" type="radio" name="disability-check" value="yes" checked={disabilityCheck=== 'yes'} onChange={e=> updateFields({disabilityCheck:e.target.value})} required/>
                     <Form.Check inline label="No" type="radio" name="disability-check" value="no" checked={disabilityCheck=== 'no'} onChange={e=> updateFields({disabilityCheck:e.target.value})}/>
                 </div>
             </Form.Group><Form.Group>
                 <Form.Label>Are you an Australian permanent resident?</Form.Label>
-                <div>
+                <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
                     <Form.Check inline label="Yes" type="radio" name="australian-residency-check" value="yes" checked={australianResidencyCheck === 'yes'} onChange={e=> updateFields({australianResidencyCheck:e.target.value})} required/>
                     <Form.Check inline label="No" type="radio" name="australian-residency-check" value="no" checked={australianResidencyCheck === 'no'} onChange={e=> updateFields({australianResidencyCheck:e.target.value})}/>
                 </div>
             </Form.Group><Form.Group>
                 <Form.Label>Have you ever been excluded from an Australian education institution before?</Form.Label>
-                <div>
+                <div className="mbsc-col-12 mbsc-col-md-6 mbsc-col-lg-3">
                     <Form.Check inline label="Yes" type="radio" name="australian-expulsion-check" value="yes" checked={australianExpulsionCheck === 'yes'} onChange={e=> updateFields({australianExpulsionCheck:e.target.value})} required/>
                     <Form.Check inline label="No" type="radio" name="australian-expulsion-check" value="no" checked={australianExpulsionCheck === 'no'} onChange={e=> updateFields({australianExpulsionCheck:e.target.value})}/>
                 </div>

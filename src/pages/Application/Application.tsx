@@ -264,7 +264,8 @@ function onSubmit(e:FormEvent){
             marginTop:'1rem',
             display:'flex',
             gap:".5rem",
-            justifyContent:'flex-end'
+            justifyContent:'flex-end',
+            maxWidth:'max-content'
           }}>
     
           {!isFirstStep && <button className='btn btn-outline-dark' type="button" onClick={back}>Back</button>}
@@ -278,7 +279,8 @@ function onSubmit(e:FormEvent){
             display:'flex',
             justifyContent:"center",
             fontSize:'1.1rem',
-            fontWeight:'700'
+            fontWeight:'700',
+            maxWidth:'max-content'
           }}>
             {currentStepIndex+1}/{steps.length}
           </div>

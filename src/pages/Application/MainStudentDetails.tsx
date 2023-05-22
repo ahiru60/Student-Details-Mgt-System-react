@@ -78,7 +78,7 @@ export function MainStudentDetails({
 
 } : MainDetailsProps){
     return (
-        <FormWrapper title={"MAIN DETAILS"}>
+        <FormWrapper title={"BASIC DETAILS"}>
             
                 <div className="--bs-info --bs-info-rgb">
                 <Form.Group className="mb-3">

@@ -79,22 +79,27 @@ export function MainStudentDetails({
 } : MainDetailsProps){
     return (
         <FormWrapper title={"MAIN DETAILS"}>
-            <Form.Group className="mb-3">
+            
+                <div className="--bs-info --bs-info-rgb">
+                <Form.Group className="mb-3">
             <Form.Label><p>Do you have a Monash student ID number?</p></Form.Label>
             <div>
                 <Form.Check inline label="Yes" type="radio" name="monash-Id-check" value="yes" checked={monashIdCheck=== 'yes'} onChange={e=> updateFields({monashIdCheck:e.target.value}) } required />
                 <Form.Check inline label="No" type="radio" name="monash-Id-check" value="no" checked={monashIdCheck=== 'no'} onChange={e=> updateFields({monashIdCheck:e.target.value}) }/>
             </div>
-        </Form.Group><Form.Group className="mb-3">
+        </Form.Group>
+        <Form.Group className="mb-3">
                 <Form.Label>If YES, please state:</Form.Label>
                 <Form.Control type="text" name="monash-Id" value={monashId} onChange={e=> updateFields({monashId:e.target.value})}/>
-            </Form.Group><Form.Group>
+            </Form.Group>
+            <Form.Group>
                 <Form.Label>Are you a currently enrolled Monash student?</Form.Label>
                 <div>
                     <Form.Check inline label="Yes" type="checkbox" name="1monash-enrolled-check" value="yes" checked={monashEnrolledCheck=== 'yes'} onChange={e=> updateFields({monashEnrolledCheck:e.target.value})}/>
                     <Form.Check inline label="No" type="checkbox" name="monash-enrolled-check" value="no" checked={monashEnrolledCheck=== 'no'} onChange={e=> updateFields({monashEnrolledCheck:e.target.value})}/>
+                </div></Form.Group>
                 </div>
-            </Form.Group><h4>1st University Applying For:</h4><Form.Group>
+            <h4>1st University Applying For:</h4><Form.Group>
                 <Form.Control type="text" name="university-preference-1" value={universityPreferenceOne} onChange={e=> updateFields({universityPreferenceOne:e.target.value})}required/>
             </Form.Group>
             <h4>Programmes Applying</h4><Form.Text>

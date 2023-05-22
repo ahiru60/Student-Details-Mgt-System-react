@@ -5,6 +5,7 @@ import { StudentPassportAndVisaDetails } from './pages/Application/StudentPasspo
 import { StudentFamilyImmigrationHistory } from './pages/Application/StudentFamilyImmigrationHistory'
 import { StudentWorkExpResumePersonalStatementDetails } from './pages/Application/StudentWorkExpResumePersonalStatementDetails'
 import { FormEvent, useState } from 'react'
+import Form from 'react-bootstrap/esm/Form'
 
 type FormData = {
 
@@ -262,11 +263,13 @@ function onSubmit(e:FormEvent){
       maxWidth:'max -content'
       }}
     >
-    <form onSubmit={onSubmit}>
+    <Form onSubmit={onSubmit}>
       <div style={{
         position:'absolute',
-        top:'.5rem',
-        right:'.5rem'
+        top:'.7rem',
+        right:'1rem',
+        fontSize:'1.1rem',
+        fontWeight:'700'
       }}>
         {currentStepIndex+1}/{steps.length}
       </div>
@@ -278,11 +281,11 @@ function onSubmit(e:FormEvent){
         justifyContent:'flex-end'
       }}>
 
-      {!isFirstStep && <button type="button" onClick={back}>Back</button>}
+      {!isFirstStep && <button className='btn btn-outline-dark' type="button" onClick={back}>Back</button>}
 
-      <button type="submit">{!isLastStep ? 'Next':'Finish'}</button>
+      <button className={isLastStep ? 'btn btn-success': 'btn btn-dark' } type="submit">{!isLastStep ? 'Next':'Finish'}</button>
       </div>
-    </form>
+    </Form>
     </div>
   </>)
 }

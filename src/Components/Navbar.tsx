@@ -2,7 +2,7 @@ import { useState } from "react"
 
 const pages = [
   {name: 'Dashboard', href: '/', current: true},
-  {name: 'Application', href: 'application' , current: false}
+  {name: 'Application', href: '/application' , current: false}
   
 ]
 

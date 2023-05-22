@@ -50,7 +50,7 @@ export function StudentContactDetails({
     updateFields
 
   } : ContactDetailsProps){
-   return(<FormWrapper title="CONTACT DETAILS">
+   return(<FormWrapper title="APPLICATION | CONTACT DETAILS">
     <h4>Permanent Address</h4>
     <Form.Group>
             <Form.Label>Country and Region:</Form.Label>

@@ -42,7 +42,7 @@ export function StudentPassportAndVisaDetails({
 
 }:PassportAndVisaDetailsProps){
    return(
-   <FormWrapper title="PASSPORT AND VISA DETAILS">
+   <FormWrapper title="APPLICATION | PASSPORT AND VISA DETAILS">
     
     <Form.Group>
       <Form.Label>Nationality (As per your passport):</Form.Label>

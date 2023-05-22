@@ -47,7 +47,7 @@ export function StudentWorkExpResumePersonalStatementDetails({
     updateFields
 
   }:WorkExpResumePersonalStatementDetailsProps){
-   return(<FormWrapper title={"WORK EXPERIENCE/RESUME/PERSONAL STATEMENT"}>
+   return(<FormWrapper title={"APPLICATION | WORK EXPERIENCE/RESUME/PERSONAL STATEMENT"}>
 <Form.Group>
   <Form.Label>Do you have any relevant work experience you'd like to be considered for admissions?</Form.Label>
   <div>

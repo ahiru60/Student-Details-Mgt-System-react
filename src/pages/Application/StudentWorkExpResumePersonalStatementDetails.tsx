@@ -203,8 +203,8 @@ export function StudentWorkExpResumePersonalStatementDetails({
 <Form.Group>
   <Form.Label>Do you wish to list any relevant work details?</Form.Label>
   <div>
-    <Form.Check inline label="Yes" type="radio" name="relevantWorkExperienceDetailsCheck" value="available" checked={relevantWorkExperienceDetailsCheck === 'yes'} onChange={e=> updateFields({relevantWorkExperienceDetailsCheck:e.target.value})}required/>
-    <Form.Check inline label="No" type="radio" name="relevantWorkExperienceDetailsCheck" value="notAvailable" checked={relevantWorkExperienceDetailsCheck === 'no'} onChange={e=> updateFields({relevantWorkExperienceDetailsCheck:e.target.value})}/>
+    <Form.Check inline label="Yes" type="radio" name="relevantWorkExperienceDetailsCheck" value="yes" checked={relevantWorkExperienceDetailsCheck === 'yes'} onChange={e=> updateFields({relevantWorkExperienceDetailsCheck:e.target.value})}required/>
+    <Form.Check inline label="No" type="radio" name="relevantWorkExperienceDetailsCheck" value="no" checked={relevantWorkExperienceDetailsCheck === 'no'} onChange={e=> updateFields({relevantWorkExperienceDetailsCheck:e.target.value})}/>
   </div>
 </Form.Group>
 

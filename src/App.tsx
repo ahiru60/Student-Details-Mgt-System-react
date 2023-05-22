@@ -32,7 +32,7 @@ type FormData = {
     title: string,
     surname: string,
     otherNames: string,
-    gender: "",
+    gender: string,
     dateOfBirth: string,
     email: string,
     disabilityCheck: string,

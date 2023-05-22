@@ -98,7 +98,7 @@ export function MainStudentDetails({
                     <Form.Check inline label="Yes" type="checkbox" name="1monash-enrolled-check" value="yes" checked={monashEnrolledCheck=== 'yes'} onChange={e=> updateFields({monashEnrolledCheck:e.target.value})}/>
                     <Form.Check inline label="No" type="checkbox" name="monash-enrolled-check" value="no" checked={monashEnrolledCheck=== 'no'} onChange={e=> updateFields({monashEnrolledCheck:e.target.value})}/>
                 </div></Form.Group>
-                </div>
+                </div><br />
             <h4>1st University Applying For:</h4><Form.Group>
                 <Form.Control type="text" name="university-preference-1" value={universityPreferenceOne} onChange={e=> updateFields({universityPreferenceOne:e.target.value})}required/>
             </Form.Group>
@@ -122,7 +122,7 @@ export function MainStudentDetails({
             </Form.Group><Form.Group>
                 <Form.Label>Campus (Location):</Form.Label>
                 <Form.Control type="text" name="campus" value={campus} onChange={e=> updateFields({campus:e.target.value})}required/>
-            </Form.Group><h4>2nd University Applying For:</h4><Form.Group>
+                <br /></Form.Group><h4>2nd University Applying For:</h4><Form.Group>
                 <Form.Control type="text" name="university-preference-2" value={universityPreferenceTwo} onChange={e=> updateFields({universityPreferenceTwo:e.target.value})}required/>
             </Form.Group><h4>Programmes Applying</h4><Form.Text>
                 Choose up to three courses you would like to study and list them in order of preference. Check the entry
@@ -143,7 +143,7 @@ export function MainStudentDetails({
             </Form.Group><Form.Group>
                 <Form.Label>Campus (Location):</Form.Label>
                 <Form.Control type="text" name="campus" value={secondUnicampus} onChange={e=> updateFields({secondUnicampus:e.target.value})}required/>
-            </Form.Group><h4>3rd University Applying For:</h4><Form.Group>
+                <br /></Form.Group><h4>3rd University Applying For:</h4><Form.Group>
                 <Form.Control type="text" name="university-preference-3" value={universityPreferenceThree} onChange={e=> updateFields({universityPreferenceThree:e.target.value})}required/>
             </Form.Group><h4>Programmes Applying</h4><Form.Text>
                 Choose up to three courses you would like to study and list them in order of preference. Check the entry
@@ -164,7 +164,8 @@ export function MainStudentDetails({
             </Form.Group><Form.Group>
                 <Form.Label>Campus (Location):</Form.Label>
                 <Form.Control type="text" name="campus" value={ thirdUnicampus} onChange={e=> updateFields({thirdUnicampus:e.target.value})}required/>
-            </Form.Group><h4>PERSONAL DETAILS as per the Passport</h4><Form.Group>
+            <br /><br /><hr />
+            </Form.Group><h4>PERSONAL DETAILS as per the Passport</h4><Form.Group> <br />
                 <Form.Label>Title:</Form.Label>
                 <Form.Control as="select" name="title" value={title} onChange={e=> updateFields({title:e.target.value})}required>
                     <option value="Mr">Mr</option>

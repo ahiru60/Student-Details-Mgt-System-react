@@ -339,7 +339,7 @@ export function StudentContactDetails({
             <Form.Label>Postal Code:</Form.Label>
             <Form.Control type="text" name="postalCode" value={postalCode} onChange={e=> updateFields({postalCode:e.target.value})} required/>
           </Form.Group>
-
+            <hr />
           <Form.Group>
                 <Form.Label>Do you have a different postal address?</Form.Label>
                 <div>

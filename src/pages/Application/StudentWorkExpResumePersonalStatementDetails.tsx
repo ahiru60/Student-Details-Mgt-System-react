@@ -63,7 +63,7 @@ export function StudentWorkExpResumePersonalStatementDetails({
     <Form.Check inline label="No" type="radio" name="studyBreakCheck" value="no" checked={studyBreakCheck === 'no'} onChange={e=> updateFields({studyBreakCheck:e.target.value})}/>
   </div>
 </Form.Group>
-
+<br />
 <h4>ENGLISH PROFICIENCY</h4>
 
 <Form.Group>
@@ -197,7 +197,7 @@ export function StudentWorkExpResumePersonalStatementDetails({
   <Form.Label>Test reference number:</Form.Label>
   <Form.Control type="text" name="englishProficiencyTestReferenceNumber" value={englishProficiencyTestReferenceNumber} onChange={e=> updateFields({englishProficiencyTestReferenceNumber:e.target.value})} />
 </Form.Group>
-
+<br />
 <h4>WORK EXPERIENCE</h4>
 
 <Form.Group>
@@ -219,7 +219,7 @@ export function StudentWorkExpResumePersonalStatementDetails({
     <option value="other">Other</option>
   </Form.Control>
 </Form.Group>
-
+<br />
 <h4>PARENT OR GUARDIAN CONTACT DETAILS</h4>
 
 <Form.Group>

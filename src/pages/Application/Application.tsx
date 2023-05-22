@@ -251,10 +251,10 @@ function onSubmit(e:FormEvent){
           position:'relative',
           background:'white',
           border: '1px solid black',
-          padding:"3.3rem 5rem", paddingBottom:"1rem",
-          margin:'4rem 10rem',
+          padding:"3rem", paddingBottom:"1rem",
+          margin:'4rem',
           borderRadius:'1rem', fontSize:'15px',
-          maxWidth:'max -content'
+          maxWidth:'max-content'
           }}
         >
         <Form onSubmit={onSubmit}>

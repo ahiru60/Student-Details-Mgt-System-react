@@ -10,7 +10,7 @@ return <>
 <h2 style={{textAlign:'center',margin:'0',marginBottom:'6rem',marginTop:'0'}}>{title}</h2>
 <div style={{display:'grid',
 gap:'1rem .5rem',
-justifyContent:'flex-start',
+justifyContent:'center',
 gridTemplateColumns:'auto minmax(auto 100px)'}}>{children}</div>
 </>
 }

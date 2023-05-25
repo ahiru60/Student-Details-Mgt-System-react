@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import { Form } from 'react-bootstrap';
 import { MainStudentDetails } from "./MainStudentDetails";
 import { StudentContactDetails } from "./StudentContactDetails";
@@ -6,8 +6,10 @@ import { StudentFamilyImmigrationHistory } from "./StudentFamilyImmigrationHisto
 import { StudentPassportAndVisaDetails } from "./StudentPassportAndVisaDetails";
 import { StudentWorkExpResumePersonalStatementDetails } from "./StudentWorkExpResumePersonalStatementDetails";
 import { useMultiStepForm } from "./useMultiStepForm";
+import { onSnapshot } from "firebase/firestore";
+import { addStudent,studentsCollection } from "../../Util/Firebase/Controller";
 
-type FormData = {
+export type FormData = {
 
     monashIdCheck: string,
       monashId: string,
@@ -222,15 +224,21 @@ type FormData = {
     
   
   }
-
+  
 export default function Application(){
-    const [data, setData] = useState(INITIAL_DATA)
+
+    const [data, setData] = useState(INITIAL_DATA);
+
   function updateFields(fields: Partial<FormData>){
     setData(prev=>{
       return{...prev,...fields}
     })
-  
+    //updateStudent( e,{...data});
   }
+
+  useEffect(()=>{onSnapshot(studentsCollection,(snapshot)=>{
+    //console.log(snapshot)
+  })})
 
 
   const{steps,currentStepIndex,step, isFirstStep,back,next,isLastStep} = useMultiStepForm([
@@ -244,8 +252,12 @@ export default function Application(){
 
 function onSubmit(e:FormEvent){ 
   e.preventDefault()
-  if(!isLastStep) return next()
-  alert("mysql")
+  if(!isLastStep){return next()}
+  else{
+    addStudent({...data});
+    alert("mysql")
+  }
+  
 }
     return (<><div style={{
           position:'relative',

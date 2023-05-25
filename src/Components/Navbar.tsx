@@ -32,6 +32,6 @@ export default function Header(){
           <a style={{padding:"2px 10px",margin:"1px 1px", fontWeight:"300"}} className="nav-link navbar-brand text-light"aria-current="page" href={page.href}>{page.name}</a>
         </li>))}
       </ul>
-      {!authing?<button style={{backgroundColor:"#edb077",borderRadius:"5px",padding:"2px 10px",margin:"1px 1px", fontWeight:"300", fontSize:"20.5px", border:"none",height:"2.6rem"}} className="nav-link navbar-brand text-light" onClick={()=>logoutWithGoogle()}>Logout</button>: null}
+      {authing?<button style={{backgroundColor:"#edb077",borderRadius:"5px",padding:"2px 10px",margin:"1px 1px", fontWeight:"300", fontSize:"20.5px", border:"none",height:"2.6rem"}} className="nav-link navbar-brand text-light" onClick={()=>logoutWithGoogle()}>Logout</button>: null}
       </nav></>)
 }

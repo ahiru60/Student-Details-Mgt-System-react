@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { app } from "./Firebase";
 import {getAuth, onAuthStateChanged} from "firebase/auth"
 import { useNavigate } from "react-router-dom";
 

@@ -55,6 +55,7 @@ export function StudentContactDetails({
     <Form.Group>
             <Form.Label>Country and Region:</Form.Label>
             <Form.Control as="select" name="countryOrRegion" value={countryOrRegion} onChange={e=> updateFields({countryOrRegion:e.target.value})} autoFocus required>
+                <option value="">Please Select</option>
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Aland Islands">Aland Islands</option>
                 <option value="Albania">Albania</option>
@@ -351,6 +352,7 @@ export function StudentContactDetails({
             <Form.Group>
             <Form.Label>Country and Region:</Form.Label>
             <Form.Control as="select" name="postal countryOrRegion" value={postalCountryOrRegion} onChange={e=> updateFields({postalCountryOrRegion:e.target.value})}>
+                <option value="">Please Select</option>
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Aland Islands">Aland Islands</option>
                 <option value="Albania">Albania</option>

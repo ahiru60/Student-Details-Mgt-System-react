@@ -144,7 +144,8 @@ export function StudentFamilyImmigrationHistory({
     <Form.Group>
       <Form.Label>In which country did you study this qualification?</Form.Label>
       <Form.Control as="select" name="secondaryStudyCountry" value={secondaryStudyCountry} onChange={e=> updateFields({secondaryStudyCountry:e.target.value})} required>
-      <option value="Afghanistan">Afghanistan</option>
+                <option value="">Please Select</option>
+                <option value="Afghanistan">Afghanistan</option>
                 <option value="Aland Islands">Aland Islands</option>
                 <option value="Albania">Albania</option>
                 <option value="Algeria">Algeria</option>
@@ -441,7 +442,8 @@ export function StudentFamilyImmigrationHistory({
     <Form.Group>
       <Form.Label>In which country did you study this qualification?</Form.Label>
       <Form.Control as="select" name="1stPostSecondaryStudyCountry" value={firstPostSecondaryStudyCountry} onChange={e=> updateFields({firstPostSecondaryStudyCountry:e.target.value})}>
-      <option value="Afghanistan">Afghanistan</option>
+                <option value="">Please Select</option>
+                <option value="Afghanistan">Afghanistan</option>
                 <option value="Aland Islands">Aland Islands</option>
                 <option value="Albania">Albania</option>
                 <option value="Algeria">Algeria</option>
@@ -735,6 +737,7 @@ export function StudentFamilyImmigrationHistory({
     <Form.Group>
       <Form.Label>In which country did you study this qualification?</Form.Label>
       <Form.Control as="select" name="2ndPostSecondaryStudyCountry" value={secondPostSecondaryStudyCountry} onChange={e=> updateFields({secondPostSecondaryStudyCountry:e.target.value})} >
+      <option value="">Please Select</option>
       <option value="Afghanistan">Afghanistan</option>
                 <option value="Aland Islands">Aland Islands</option>
                 <option value="Albania">Albania</option>

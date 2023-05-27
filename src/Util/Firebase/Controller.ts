@@ -20,6 +20,7 @@ import { FormData } from "../../pages/Application/Application";
   export const addStudent = async (studentData: FormData) => {
     const newStudent = await addDoc(studentsCollection, { ...studentData });
     console.log(`The new student was created at ${newStudent.path}`);
+    console.log(studentData)
   };
   // EDIT A DOCUMENT / DESCRIPTION
   export const updateStudent = async (id: string | undefined, docData: FormData) => {

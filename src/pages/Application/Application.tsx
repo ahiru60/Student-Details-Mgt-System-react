@@ -1,4 +1,4 @@
-import { useState, FormEvent, useEffect } from "react";
+import { useState, FormEvent, useEffect, useContext } from "react";
 import { Form } from 'react-bootstrap';
 import { MainStudentDetails } from "./MainStudentDetails";
 import { StudentContactDetails } from "./StudentContactDetails";
@@ -8,10 +8,12 @@ import { StudentWorkExpResumePersonalStatementDetails } from "./StudentWorkExpRe
 import { useMultiStepForm } from "./useMultiStepForm";
 import { onSnapshot } from "firebase/firestore";
 import { addStudent,studentsCollection } from "../../Util/Firebase/Controller";
+import { UserContext } from "../../Components/UserContext";
 
 export type FormData = {
-
-    monashIdCheck: string,
+      uid: string | undefined,
+      displayname: string | null | undefined,
+      monashIdCheck: string,
       monashId: string,
       monashEnrolledCheck: string,
       universityPreferenceOne: string,
@@ -115,7 +117,8 @@ export type FormData = {
   }
   
   const INITIAL_DATA: FormData = {
-  
+      uid : "",
+      displayname:"",
       monashIdCheck: "",
       monashId: "",
       monashEnrolledCheck: "",
@@ -235,7 +238,8 @@ export default function Application(){
     })
     //updateStudent( e,{...data});
   }
-
+  const userContext =useContext(UserContext)
+  
   useEffect(()=>{onSnapshot(studentsCollection,(snapshot)=>{
     //console.log(snapshot)
   })})
@@ -254,8 +258,11 @@ function onSubmit(e:FormEvent){
   e.preventDefault()
   if(!isLastStep){return next()}
   else{
-    addStudent({...data});
-    alert("mysql")
+   const context = {uid:userContext.user?.uid,
+    displayname:userContext.user?.displayName}
+    const userDoc ={...data,...context}
+    addStudent({...userDoc});
+    //alert("mysql")
   }
   
 }

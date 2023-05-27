@@ -52,6 +52,7 @@ export function StudentPassportAndVisaDetails({
     <Form.Group>
       <Form.Label>Country of Birth:</Form.Label>
       <Form.Control as="select" name="countryOfBirth" value={countryOfBirth} onChange={e=> updateFields({countryOfBirth:e.target.value})}required>
+          <option value="">Please Select</option>
           <option value="Afghanistan">Afghanistan</option>
           <option value="Aland Islands">Aland Islands</option>
           <option value="Albania">Albania</option>

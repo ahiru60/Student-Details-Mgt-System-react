@@ -69,6 +69,7 @@ export function StudentWorkExpResumePersonalStatementDetails({
 <Form.Group>
   <Form.Label>What is your first language?</Form.Label>
   <Form.Control as="select" name="firstLanguage" value={firstLanguage} onChange={e=> updateFields({firstLanguage:e.target.value})} required>
+      <option value="">Please Select</option>
       <option value="afrikaans">Afrikaans</option>
       <option value="albanian">Albanian</option>
       <option value="amharic">Amharic</option>

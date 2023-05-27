@@ -1,13 +1,10 @@
 import { User, getAuth, onAuthStateChanged } from "firebase/auth";
 import { createContext, useState } from "react";
 
-type AuthUser ={
-    email:string | null,
-    user:string | null
-}
+
 
 export type userContextType   ={
-    user : any,
+    user : User | null,
     setUser: any
 
 }

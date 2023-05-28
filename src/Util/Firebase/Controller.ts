@@ -12,12 +12,13 @@ import { useContext } from "react";
   export const studentsCollection = collection(firestore, "students");
   
   // ADD A NEW DOCUMENT TO YOUR COLLECTION
-  export const addStudent = async (studentData: FormData,userContext: userContextType,setUser:any) => {
+  export const addStudent = async (studentData: FormData,userContext: userContextType,setError:any) => {
     
     const newStudent = await setDoc(doc(studentsCollection,userContext.user?.uid), { ...studentData });
     console.log(`The new student was created at ${newStudent}`);
-    setUser(null)
+    setError("success")
     console.log(studentData)
+    
   };
   // EDIT A DOCUMENT / DESCRIPTION
   export const updateStudent = async (id: string | undefined, docData: FormData) => {
@@ -51,18 +52,19 @@ import { useContext } from "react";
       return querySnapshot
 }
 
-export const checkStudent = async (keyWord:string)=>{
+export const checkStudent = async (keyWord:any,setStudentDoc:any)=>{
     
   const docRef = doc(firestore, "students", keyWord);
   const docSnap = await getDoc(docRef)
   
   if (docSnap.exists()) {
     console.log("true")
-      return true
+      setStudentDoc({data:docSnap.data()})
+      return ({exsist:true})
   } else {
       // docSnap.data() will be undefined in this case
       console.log("false")
-      return false
+      return ({exsist:false})
   }
 }
       

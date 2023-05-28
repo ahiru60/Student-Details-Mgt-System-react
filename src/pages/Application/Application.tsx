@@ -116,136 +116,157 @@ export type FormData = {
   
   }
   
-  const INITIAL_DATA: FormData = {
-      uid : "",
-      displayname:"",
-      monashIdCheck: "",
-      monashId: "",
-      monashEnrolledCheck: "",
-      universityPreferenceOne: "",
-      firstUniProgramPreferenceOne: "",
-      firstUniProgramPreferenceTwo: "",
-      firstUniProgramPreferenceThree: "",
-      intake: "",
-      campus: "",
-      universityPreferenceTwo: "",
-      secondUniProgramPreferenceOne: "",
-      secondUniProgramPreferenceTwo: "",
-      secondUniProgramPreferenceThree: "",
-      secondUniintake: "",
-      secondUnicampus: "",
-      universityPreferenceThree: "",
-      thirdUniPprogramPreferenceOne: "",
-      thirdUniProgramPreferenceTwo: "",
-      thirdUniProgramPreferenceThree: "",
-      thirdUniintake: "",
-      thirdUnicampus: "",
-      title: "",
-      surname: "",
-      otherNames: "",
-      gender: "",
-      dateOfBirth: "",
-      email: "",
-      disabilityCheck: "",
-      australianResidencyCheck: "",
-      australianExpulsionCheck: "",
   
-      countryOrRegion: "",
-      stateProvince: "",
-      citySuburb: "",
-      addressLine1: "",
-      addressLine2: "",
-      addressLine3: "",
-      postalCode: "",
-      differentPostalCheck: "",
-      postalCountryOrRegion: "",
-      postalStateProvince: "",
-      postalCitySuburb: "",
-      postalAddressLine1: "",
-      postalAddressLine2: "",
-      postalAddressLine3: "",
-      postalPostalCode: "",
-      postalMobileNumber: "",
-      postalLandlineNumber: "",
-  
-      maritalStatus: "",
-      familyMembers: "",
-      haveFundsCheck: "",
-      haveRelativesCheck: "",
-      haveAppliedCheck: "",
-      secondaryStudyQualificationName: "",
-      secondaryStudySchoolInstitutionName: "",
-      secondaryStudyCommencedDate: "",
-      secondaryStudyCompletedDate: "",
-      secondaryStudyCountry: "",
-      secondaryStudyEnglishMediumCheck: "",
-      secondaryStudyCompletedCheck: "",
-      firstPostSecondaryStudyQualificationName: "",
-      firstPostSecondaryStudySchoolInstitutionName: "",
-      firstPostSecondaryStudyCommencedDate: "",
-      firstPostSecondaryStudyCompletedDate: "",
-      firstPostSecondaryStudyCountry: "",
-      firstPostSecondaryStudyEnglishMediumCheck: "",
-      firstPostSecondaryStudyCompletedCheck: "",
-      secondPostSecondaryStudyQualificationName: "",
-      secondPostSecondaryStudySchoolInstitutionName: "",
-      secondPostSecondaryStudyCommencedDate: "",
-      secondPostSecondaryStudyCompletedDate: "",
-      secondPostSecondaryStudyCountry: "",
-      secondPostSecondaryStudyEnglishMediumCheck: "",
-      secondPostSecondaryStudyCompletedCheck: "",
-  
-      nationality: "",
-      countryOfBirth: "",
-      passportNumber: "",
-      passportIssueDate: "",
-      passportExpiryDate: "",
-      visitedOrStudiedInAus: "",
-      holdingAusVisa: "",
-      holdingAusVisaGrantNumber: "",
-      ausVisaBreach: "",
-      ausVisaRefuse: "",
-      protectionVisa: "",
-      criminalOffence: "",
-      
-      relevantWorkExperienceCheck: "",
-      studyBreakCheck: "",
-      firstLanguage: "",
-      englishProficiencyTest: "",
-      englishProficiencyTestName: "",
-      englishProficiencyTestDate: "",
-      englishProficiencyTestReferenceNumber: "",
-      relevantWorkExperienceDetailsCheck: "",
-      studyFundMethod: "",
-      parentGuardianName: "",
-      parentGuardianMobileNumber: "",
-      parentGuardianEmail: "",
-      careerAspirationNote: "",
-      universityChoiceNote: "",
-      directedMedia: ""
-  
-    
-  
-  }
   
 export default function Application(){
+  const userContext =useContext(UserContext)
+  
+  //const checkState = checkStudent(userContext.user&& userContext.user.uid,userContext.setStudentDoc)
+  const INITIAL_DATA: FormData = {
+    uid : "",
+    displayname:"",
+    monashIdCheck: "",
+    monashId: "",
+    monashEnrolledCheck: "",
+    universityPreferenceOne: "",
+    firstUniProgramPreferenceOne: "",
+    firstUniProgramPreferenceTwo: "",
+    firstUniProgramPreferenceThree: "",
+    intake: "",
+    campus: "",
+    universityPreferenceTwo: "",
+    secondUniProgramPreferenceOne: "",
+    secondUniProgramPreferenceTwo: "",
+    secondUniProgramPreferenceThree: "",
+    secondUniintake: "",
+    secondUnicampus: "",
+    universityPreferenceThree: "",
+    thirdUniPprogramPreferenceOne: "",
+    thirdUniProgramPreferenceTwo: "",
+    thirdUniProgramPreferenceThree: "",
+    thirdUniintake: "",
+    thirdUnicampus: "",
+    title: "",
+    surname: "",
+    otherNames: "",
+    gender: "",
+    dateOfBirth: "",
+    email: "",
+    disabilityCheck: "",
+    australianResidencyCheck: "",
+    australianExpulsionCheck: "",
 
-    const [data, setData] = useState(INITIAL_DATA);
+    countryOrRegion: "",
+    stateProvince: "",
+    citySuburb: "",
+    addressLine1: "",
+    addressLine2: "",
+    addressLine3: "",
+    postalCode: "",
+    differentPostalCheck: "",
+    postalCountryOrRegion: "",
+    postalStateProvince: "",
+    postalCitySuburb: "",
+    postalAddressLine1: "",
+    postalAddressLine2: "",
+    postalAddressLine3: "",
+    postalPostalCode: "",
+    postalMobileNumber: "",
+    postalLandlineNumber: "",
+
+    maritalStatus: "",
+    familyMembers: "",
+    haveFundsCheck: "",
+    haveRelativesCheck: "",
+    haveAppliedCheck: "",
+    secondaryStudyQualificationName: "",
+    secondaryStudySchoolInstitutionName: "",
+    secondaryStudyCommencedDate: "",
+    secondaryStudyCompletedDate: "",
+    secondaryStudyCountry: "",
+    secondaryStudyEnglishMediumCheck: "",
+    secondaryStudyCompletedCheck: "",
+    firstPostSecondaryStudyQualificationName: "",
+    firstPostSecondaryStudySchoolInstitutionName: "",
+    firstPostSecondaryStudyCommencedDate: "",
+    firstPostSecondaryStudyCompletedDate: "",
+    firstPostSecondaryStudyCountry: "",
+    firstPostSecondaryStudyEnglishMediumCheck: "",
+    firstPostSecondaryStudyCompletedCheck: "",
+    secondPostSecondaryStudyQualificationName: "",
+    secondPostSecondaryStudySchoolInstitutionName: "",
+    secondPostSecondaryStudyCommencedDate: "",
+    secondPostSecondaryStudyCompletedDate: "",
+    secondPostSecondaryStudyCountry: "",
+    secondPostSecondaryStudyEnglishMediumCheck: "",
+    secondPostSecondaryStudyCompletedCheck: "",
+
+    nationality: "",
+    countryOfBirth: "",
+    passportNumber: "",
+    passportIssueDate: "",
+    passportExpiryDate: "",
+    visitedOrStudiedInAus: "",
+    holdingAusVisa: "",
+    holdingAusVisaGrantNumber: "",
+    ausVisaBreach: "",
+    ausVisaRefuse: "",
+    protectionVisa: "",
+    criminalOffence: "",
+    
+    relevantWorkExperienceCheck: "",
+    studyBreakCheck: "",
+    firstLanguage: "",
+    englishProficiencyTest: "",
+    englishProficiencyTestName: "",
+    englishProficiencyTestDate: "",
+    englishProficiencyTestReferenceNumber: "",
+    relevantWorkExperienceDetailsCheck: "",
+    studyFundMethod: "",
+    parentGuardianName: "",
+    parentGuardianMobileNumber: "",
+    parentGuardianEmail: "",
+    careerAspirationNote: "",
+    universityChoiceNote: "",
+    directedMedia: ""
+
+  
+
+} 
+
+function getFormValue(){
+  const storedLocalValues = localStorage.getItem("FORM_DATA_ON_UPDATE_SDM_APP")
+  if(!storedLocalValues) return INITIAL_DATA
+  return JSON.parse(storedLocalValues)
+}
+
+const [data, setData] = useState(getFormValue);
+
+    useEffect(()=>{
+      localStorage.setItem("FORM_DATA_ON_UPDATE_SDM_APP",JSON.stringify(data))
+      console.log("updating..")
+    },[updateFields])
+    
+
+   
 
   function updateFields(fields: Partial<FormData>){
-    setData(prev=>{
+    setData((prev: any)=>{
       return{...prev,...fields}
     })
     //updateStudent( e,{...data});
+    
   }
-  const userContext =useContext(UserContext)
-  const [error,setError] = useState<any>("")
+    
   
+  
+  const [error,setError] = useState<any>("")
+  //updateFields({ })
   useEffect(()=>{onSnapshot(studentsCollection,(snapshot)=>{
     //console.log(snapshot)
-  })})
+  })},[])
 
-
+  //console.log(userContext.studentDoc.data)
   const{steps,currentStepIndex,step, isFirstStep,back,next,isLastStep} = useMultiStepForm([
   <MainStudentDetails {...data} updateFields={updateFields}/>,
   <StudentContactDetails {...data} updateFields={updateFields}/>,
@@ -262,7 +283,7 @@ export default function Application(){
    const context = {uid:userContext.user?.uid,
     displayname:userContext.user?.displayName}
     const userDoc ={...data,...context}
-    userContext.user?.uid != null? await checkStudent(userContext.user.uid)? setError("Already submitted..!") : addStudent({...userDoc},userContext,setError):  setError("Error occured..!")
+    userContext.user != null? await checkStudent(userContext.user && userContext.user.uid, userContext.setStudentDoc)? setError("Already submitted..!") : addStudent({...userDoc},userContext,setError):  setError("Error occured..!")
     
     //alert("mysql")
   }
@@ -291,7 +312,8 @@ export default function Application(){
     
           <button className={isLastStep ? 'btn btn-success': 'btn btn-dark' } type="submit">{!isLastStep ? 'Next':'Finish'}</button>
           </div>
-          {error? <><br /><Alert variant="danger">{error}</Alert></> : <><br /><Alert variant="success">Form submitted successfully</Alert></>}
+          {error && error!="success"? <><br /><Alert variant="danger">{error}</Alert></> : null}
+          {error=="success"? <><br /><Alert variant="success">Form submitted successfully</Alert></>:null}
           <div style={{
             marginTop:"3rem",
             position:'relative',

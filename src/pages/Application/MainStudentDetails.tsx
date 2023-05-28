@@ -42,6 +42,7 @@ type MainDetailsProps = userData & {
 
 }
 
+
 export function MainStudentDetails({
 
     monashIdCheck,

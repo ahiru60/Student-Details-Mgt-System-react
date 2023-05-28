@@ -1,5 +1,5 @@
 import { useState, FormEvent, useEffect, useContext } from "react";
-import { Form } from 'react-bootstrap';
+import { Alert, Form } from 'react-bootstrap';
 import { MainStudentDetails } from "./MainStudentDetails";
 import { StudentContactDetails } from "./StudentContactDetails";
 import { StudentFamilyImmigrationHistory } from "./StudentFamilyImmigrationHistory";
@@ -7,7 +7,7 @@ import { StudentPassportAndVisaDetails } from "./StudentPassportAndVisaDetails";
 import { StudentWorkExpResumePersonalStatementDetails } from "./StudentWorkExpResumePersonalStatementDetails";
 import { useMultiStepForm } from "./useMultiStepForm";
 import { onSnapshot } from "firebase/firestore";
-import { addStudent,studentsCollection } from "../../Util/Firebase/Controller";
+import { addStudent,checkStudent,getStudent,studentsCollection } from "../../Util/Firebase/Controller";
 import { UserContext } from "../../Components/UserContext";
 
 export type FormData = {
@@ -239,6 +239,7 @@ export default function Application(){
     //updateStudent( e,{...data});
   }
   const userContext =useContext(UserContext)
+  const [error,setError] = useState<any>("")
   
   useEffect(()=>{onSnapshot(studentsCollection,(snapshot)=>{
     //console.log(snapshot)
@@ -254,14 +255,15 @@ export default function Application(){
 ])
 
 
-function onSubmit(e:FormEvent){ 
+  async function onSubmit(e:FormEvent){ 
   e.preventDefault()
   if(!isLastStep){return next()}
   else{
    const context = {uid:userContext.user?.uid,
     displayname:userContext.user?.displayName}
     const userDoc ={...data,...context}
-    addStudent({...userDoc});
+    userContext.user?.uid != null? await checkStudent(userContext.user.uid)? setError("Already submitted..!") : addStudent({...userDoc},userContext,setError):  setError("Error occured..!")
+    
     //alert("mysql")
   }
   
@@ -271,13 +273,12 @@ function onSubmit(e:FormEvent){
           background:'white',
           border: '1px solid black',
           padding:"3%", paddingBottom:"1%",
-          margin:'5%',
-          borderRadius:'30px', fontSize:'100%',
+          margin:'5% 15%', fontSize:'100%',
           maxWidth:'100%'
           }}
-        >
+          className="shadow rounded">
         <Form onSubmit={onSubmit}>
-          
+        
           {step}
           <div style={{
             marginTop:'1rem',
@@ -290,6 +291,7 @@ function onSubmit(e:FormEvent){
     
           <button className={isLastStep ? 'btn btn-success': 'btn btn-dark' } type="submit">{!isLastStep ? 'Next':'Finish'}</button>
           </div>
+          {error? <><br /><Alert variant="danger">{error}</Alert></> : <><br /><Alert variant="success">Form submitted successfully</Alert></>}
           <div style={{
             marginTop:"3rem",
             position:'relative',
@@ -299,9 +301,11 @@ function onSubmit(e:FormEvent){
             fontSize:'1.1rem',
             fontWeight:'700'
           }}>
+            
             {currentStepIndex+1}/{steps.length}
           </div>
         </Form>
+        
         </div>
       </>)
 }

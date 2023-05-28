@@ -1,15 +1,10 @@
-import {
-    addDoc,
-    collection,
-    deleteDoc,
-    doc,
-    getFirestore,
-    setDoc,
-  } from "firebase/firestore";
+import {addDoc,collection,deleteDoc,doc,getDoc,getDocs,getFirestore,query,setDoc,where} from "firebase/firestore";
   import { NavigateFunction } from "react-router-dom";
   // This is tree shaking from firestore
   import { app } from "../Firebase/Firebase";
 import { FormData } from "../../pages/Application/Application";
+import { UserContext, userContextType } from "../../Components/UserContext"
+import { useContext } from "react";
   
   export const firestore = getFirestore(app);
   
@@ -17,9 +12,11 @@ import { FormData } from "../../pages/Application/Application";
   export const studentsCollection = collection(firestore, "students");
   
   // ADD A NEW DOCUMENT TO YOUR COLLECTION
-  export const addStudent = async (studentData: FormData) => {
-    const newStudent = await addDoc(studentsCollection, { ...studentData });
-    console.log(`The new student was created at ${newStudent.path}`);
+  export const addStudent = async (studentData: FormData,userContext: userContextType,setUser:any) => {
+    
+    const newStudent = await setDoc(doc(studentsCollection,userContext.user?.uid), { ...studentData });
+    console.log(`The new student was created at ${newStudent}`);
+    setUser(null)
     console.log(studentData)
   };
   // EDIT A DOCUMENT / DESCRIPTION
@@ -38,5 +35,36 @@ import { FormData } from "../../pages/Application/Application";
     console.log(`The hotel has now been deleted`);
     navigate("/");
   };
+
+  export const getStudent = async (keyWord:string | undefined)=>{
+    
+      const q = query(
+        studentsCollection,
+        //  where('owner', '==', currentUserId),
+        where('uid', '==', keyWord) // does not need index
+        //  where('score', '<=', 100) // needs index  https://firebase.google.com/docs/firestore/query-data/indexing?authuser=1&hl=en
+        // orderBy('score', 'asc'), // be aware of limitations: https://firebase.google.com/docs/firestore/query-data/order-limit-data#limitations
+        // limit(1)
+        
+      );
+      const querySnapshot = await getDocs(q);
+      return querySnapshot
+}
+
+export const checkStudent = async (keyWord:string)=>{
+    
+  const docRef = doc(firestore, "students", keyWord);
+  const docSnap = await getDoc(docRef)
+  
+  if (docSnap.exists()) {
+    console.log("true")
+      return true
+  } else {
+      // docSnap.data() will be undefined in this case
+      console.log("false")
+      return false
+  }
+}
+      
   
   

@@ -4,6 +4,7 @@ import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthState
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Components/UserContext";
 import { Alert, Button, Card, Container } from "react-bootstrap";
+import { doc, getDoc } from "firebase/firestore";
 
 type AuthUser ={
     email:string | null,
@@ -35,8 +36,6 @@ export function Login(){
             console.log(response.user)
             user.email = response.user.email,
             user.user = response.user.displayName,
-            //userContext.setUser(user);
-            //navigate("/dashboard/")
             window.location.replace("./")
             }
         }).catch(error=>{
@@ -100,11 +99,11 @@ export function Login(){
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" name="email" value={userEmail} onChange={(e)=>setUserEmail(e.target.value)} required />
+              <Form.Control type="email" name="email" value={userEmail} onChange={(e)=>setUserEmail(e.target.value)}/>
             </Form.Group>
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>
-              <Form.Control name="password" value={userPassword} onChange={(e)=>setUserPassword(e.target.value)} required />
+              <Form.Control name="password" value={userPassword} onChange={(e)=>setUserPassword(e.target.value)}/>
             </Form.Group><br />
             <Button style={{backgroundColor:"#487E6E",border:"none"}} disabled={authing} className="w-100" type="submit" onClick={()=>signInWithGoogleWithEmail()}>
               Log In

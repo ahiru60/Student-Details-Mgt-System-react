@@ -1,8 +1,9 @@
 import Form from "react-bootstrap/esm/Form";
-import { FormEvent, useContext, useState} from "react";
-import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut} from "firebase/auth"
-import { useNavigate } from "react-router-dom";
+import { FormEvent, useContext, useEffect, useState} from "react";
+import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut} from "firebase/auth"
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Components/UserContext";
+import { Alert, Button, Card, Container } from "react-bootstrap";
 
 type AuthUser ={
     email:string | null,
@@ -17,11 +18,16 @@ export function Login(){
     const navigate = useNavigate();
     const [authing,setAuthing] = useState(false);
     const userContext = useContext(UserContext);
+    const [error, setError] = useState("")
+    
     //const {user,setUser} = userContext;
     //userContext.setUser({email:"55",user:""})
     //console.log(userContext.user)
+    
+    //userContext.user && window.location.replace("./");
 
     const signInWithGoogleWithPopup = async () =>{
+        setError("")
         setAuthing(true);
         signInWithPopup(auth, new GoogleAuthProvider()).then(response=>{
             
@@ -30,22 +36,28 @@ export function Login(){
             user.email = response.user.email,
             user.user = response.user.displayName,
             //userContext.setUser(user);
-            navigate("/dashboard")
+            //navigate("/dashboard/")
+            window.location.replace("./")
             }
         }).catch(error=>{
-            console.log(error)
-            setAuthing(false)
+            //console.log(error)
+            setError("Failed to log in")
         })
+        setAuthing(false)
+        
     }
     const signInWithGoogleWithEmail = async () =>{
+        setError("")
         setAuthing(true);
         signInWithEmailAndPassword(auth,userEmail,userPassword).then(response=>{
             console.log(response.user)
-            navigate("/dashboard")
+            //navigate("/dashboard/")
+            window.location.replace("./")
         }).catch(error=>{
-            console.log(error)
-            setAuthing(false)
+            //console.log(error)
+            setError("Failed to log in")
         })
+        setAuthing(false)
     }
     const registerWithGoogle = async(userEmail:string, userPassword:string)=> {
        
@@ -55,53 +67,62 @@ export function Login(){
             //navigate("/")
         }).catch(error=>{
             console.log(error)
-            setAuthing(false)
+            
         })
+        setAuthing(false)
     }
+
+    
+
     const[userEmail,setUserEmail] = useState("");
     const[userPassword,setUserPassword] = useState("");
     function handleSubmit(e:FormEvent<HTMLFormElement>) {
         e.preventDefault();}
-    return(
-        <div style={{display:"grid",
-        justifyContent:"center"}}>
-        <Form style={{
+    return( <Container
+        className="d-flex align-items-center justify-content-center "
+        style={{ minHeight: "100vh" }}
+      >
+        <div className="w-100 " style={{ maxWidth: "400px" }}>
+      <Card style={{
           position:'relative',
           background:'white',
           border: '1px solid black',
           padding:"3%", paddingBottom:"3%",
           marginTop:'4%',
-          borderRadius:'30px', fontSize:'100%',
+        fontSize:'100%',
           maxWidth:'100%',
           width:"800px",
           height:"auto"
-          }} onSubmit={(e) => handleSubmit(e)}>
-            <h1 className="d-flex justify-content-center">LOGIN</h1><br />
-            <Form.Group>
-                <Form.Label>
-                E-mail:
-                </Form.Label>
-                <Form.Control type="emal" name="email" value={userEmail} onChange={(e)=>setUserEmail(e.target.value)} required/>
+          }} className="shadow-lg p-3 mb-5">
+        <Card.Body>
+          <h1 className="text-center mb-4">LOGIN</h1>
+          {error && <Alert variant="danger">{error}</Alert>}
+          <Form onSubmit={handleSubmit}>
+            <Form.Group id="email">
+              <Form.Label>Email</Form.Label>
+              <Form.Control type="email" name="email" value={userEmail} onChange={(e)=>setUserEmail(e.target.value)} required />
             </Form.Group>
-            <Form.Group>
-                <Form.Label>
-                Password:
-                </Form.Label>
-                <Form.Control type="password" name="password" value={userPassword} onChange={(e)=>setUserPassword(e.target.value)} required/>
-            </Form.Group>
-            <Form.Group style={{
-            marginTop:'4rem',
-            display:'flex',
-            gap:".5rem",
-            justifyContent:'center',
-          }}>
-                <button className="btn btn-success"  onClick={()=>signInWithGoogleWithEmail()}>Login</button>
-                <button className="btn btn-outline-secondary" onClick={()=>signInWithGoogleWithPopup()} disabled={authing}>Sign in with Google</button>
-                <button className="btn btn-outline-dark" onClick={()=>registerWithGoogle(userEmail,userPassword)}>Register</button>
-            </Form.Group>
-        </Form>
-        
-        </div>
+            <Form.Group id="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control name="password" value={userPassword} onChange={(e)=>setUserPassword(e.target.value)} required />
+            </Form.Group><br />
+            <Button style={{backgroundColor:"#487E6E",border:"none"}} disabled={authing} className="w-100" type="submit" onClick={()=>signInWithGoogleWithEmail()}>
+              Log In
+            </Button><br /><br />
+            <button  disabled={authing} className="w-100 btn btn-outline-dark" type="submit" onClick={()=>signInWithGoogleWithPopup()}>
+              Sign In with Google
+            </button>
+          </Form>
+          <div className="w-100 text-center mt-3">
+            <Link to="/forgot-password">Forgot Password?</Link>
+          </div>
+        </Card.Body>
+      </Card>
+      <div className="w-100 text-center mt-2">
+        Need an account? <Link to="/signup">Sign Up</Link>
+      </div>
+      </div>
+    </Container>
     )
 }
 

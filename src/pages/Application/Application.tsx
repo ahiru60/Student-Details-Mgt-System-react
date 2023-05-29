@@ -7,7 +7,7 @@ import { StudentPassportAndVisaDetails } from "./StudentPassportAndVisaDetails";
 import { StudentWorkExpResumePersonalStatementDetails } from "./StudentWorkExpResumePersonalStatementDetails";
 import { useMultiStepForm } from "./useMultiStepForm";
 import { onSnapshot } from "firebase/firestore";
-import { addStudent,checkStudent,getStudent,studentsCollection } from "../../Util/Firebase/Controller";
+import { addStudent,checkStudent,studentsCollection } from "../../Util/Firebase/Controller";
 import { UserContext } from "../../Components/UserContext";
 
 export type FormData = {
@@ -262,9 +262,9 @@ const [data, setData] = useState(getFormValue);
   
   const [error,setError] = useState<any>("")
   //updateFields({ })
-  useEffect(()=>{onSnapshot(studentsCollection,(snapshot)=>{
+  /*useEffect(()=>{onSnapshot(studentsCollection,(snapshot)=>{
     //console.log(snapshot)
-  })},[])
+  })},[])*/
 
   //console.log(userContext.studentDoc.data)
   const{steps,currentStepIndex,step, isFirstStep,back,next,isLastStep} = useMultiStepForm([

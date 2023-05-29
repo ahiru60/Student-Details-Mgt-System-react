@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 export function AuthRoute (props:any){
   const {children} = props
   const auth = getAuth()
-  const navigate = useNavigate()
   const[loading,setLoading] = useState(false)
 
   useEffect(()=>{
@@ -18,7 +17,7 @@ export function AuthRoute (props:any){
     }
     else{
       console.log("unauthorized login")
-      navigate("/login")
+      window.location.replace("./login")
     }
   })
   if(loading) return  <p>Loading....</p>

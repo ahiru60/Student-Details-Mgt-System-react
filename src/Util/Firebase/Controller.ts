@@ -1,10 +1,9 @@
-import {addDoc,collection,deleteDoc,doc,getDoc,getDocs,getFirestore,query,setDoc,where} from "firebase/firestore";
+import {collection,deleteDoc,doc,getDoc,getDocs,getFirestore,query,setDoc,where} from "firebase/firestore";
   import { NavigateFunction } from "react-router-dom";
   // This is tree shaking from firestore
   import { app } from "../Firebase/Firebase";
 import { FormData } from "../../pages/Application/Application";
-import { UserContext, userContextType } from "../../Components/UserContext"
-import { useContext } from "react";
+import {userContextType } from "../../Components/UserContext"
   
   export const firestore = getFirestore(app);
   

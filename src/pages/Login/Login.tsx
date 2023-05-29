@@ -1,8 +1,7 @@
 import Form from "react-bootstrap/esm/Form";
-import { FormEvent, useContext, useEffect, useState} from "react";
-import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut} from "firebase/auth"
+import { FormEvent, useContext, useState} from "react";
+import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup} from "firebase/auth"
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../../Components/UserContext";
 import { Alert, Button, Card, Container } from "react-bootstrap";
 import { doc, getDoc } from "firebase/firestore";
 
@@ -16,9 +15,7 @@ const user: AuthUser ={
 }
 export function Login(){
     const auth =getAuth();
-    const navigate = useNavigate();
     const [authing,setAuthing] = useState(false);
-    const userContext = useContext(UserContext);
     const [error, setError] = useState("")
     
     //const {user,setUser} = userContext;
@@ -35,7 +32,7 @@ export function Login(){
             if(response){
             console.log(response.user)
             user.email = response.user.email,
-            user.user = response.user.displayName,
+            user.user = response.user.displayName
             window.location.replace("./")
             }
         }).catch(error=>{

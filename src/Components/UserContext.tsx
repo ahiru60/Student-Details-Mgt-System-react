@@ -1,6 +1,5 @@
 import { User, getAuth, onAuthStateChanged } from "firebase/auth";
 import { createContext, useState,useEffect } from "react";
-import { checkStudent } from "../Util/Firebase/Controller";
 
 
 

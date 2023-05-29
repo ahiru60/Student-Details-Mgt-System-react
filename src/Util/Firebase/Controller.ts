@@ -51,7 +51,7 @@ import {userContextType } from "../../Components/UserContext"
       return querySnapshot
 }
 
-export const checkStudent = async (keyWord:any,setStudentDoc:any)=>{
+export const checkStudentOnFS = async (keyWord:any,setStudentDoc:any)=>{
     
   const docRef = doc(firestore, "students", keyWord);
   const docSnap = await getDoc(docRef)
@@ -59,11 +59,11 @@ export const checkStudent = async (keyWord:any,setStudentDoc:any)=>{
   if (docSnap.exists()) {
     console.log("true")
       setStudentDoc({data:docSnap.data()})
-      return ({exsist:true})
+      return (true)
   } else {
       // docSnap.data() will be undefined in this case
       console.log("false")
-      return ({exsist:false})
+      return (false)
   }
 }
       

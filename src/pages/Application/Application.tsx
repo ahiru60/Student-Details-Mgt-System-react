@@ -7,7 +7,7 @@ import { StudentPassportAndVisaDetails } from "./StudentPassportAndVisaDetails";
 import { StudentWorkExpResumePersonalStatementDetails } from "./StudentWorkExpResumePersonalStatementDetails";
 import { useMultiStepForm } from "./useMultiStepForm";
 import { onSnapshot } from "firebase/firestore";
-import { addStudent,checkStudent,studentsCollection } from "../../Util/Firebase/Controller";
+import { addStudent,checkStudentOnFS,studentsCollection } from "../../Util/Firebase/Controller";
 import { UserContext } from "../../Components/UserContext";
 
 export type FormData = {
@@ -283,7 +283,7 @@ const [data, setData] = useState(getFormValue);
    const context = {uid:userContext.user?.uid,
     displayname:userContext.user?.displayName}
     const userDoc ={...data,...context}
-    userContext.user != null? await checkStudent(userContext.user && userContext.user.uid, userContext.setStudentDoc)? setError("Already submitted..!") : addStudent({...userDoc},userContext,setError):  setError("Error occured..!")
+    userContext.user != null? await !checkStudentOnFS(userContext.user && userContext.user.uid, userContext.setStudentDoc)? setError("Already submitted..!") : addStudent({...userDoc},userContext,setError):  setError("Error occured..!")
     
     //alert("mysql")
   }

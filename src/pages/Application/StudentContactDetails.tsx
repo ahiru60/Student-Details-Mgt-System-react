@@ -1,3 +1,4 @@
+
 import { FormWrapper } from "./FormWrapper";
 import Form from "react-bootstrap/esm/Form";
 
@@ -641,6 +642,7 @@ export function StudentContactDetails({
           <Form.Group>
             <Form.Label>Mobile Phone Number:</Form.Label>
             <Form.Control type="text" name="postal mobileNumber" value={postalMobileNumber} onChange={e=> updateFields({postalMobileNumber:e.target.value})} />
+            
           </Form.Group>
     
           <Form.Group>

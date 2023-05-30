@@ -1,24 +1,22 @@
 import Form from "react-bootstrap/esm/Form";
 import { FormEvent, useContext, useState} from "react";
-import {createUserWithEmailAndPassword, getAuth,onAuthStateChanged, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup} from "firebase/auth"
+import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup} from "firebase/auth"
 import { Link, useNavigate } from "react-router-dom";
 import { Alert, Button, Card, Container } from "react-bootstrap";
 import { doc, getDoc } from "firebase/firestore";
-import { UserContext } from "../../Components/UserContext";
 
 type AuthUser ={
     email:string | null,
-    user:string | null | undefined
+    user:string | null
 }
 const user: AuthUser ={
     email :"",
     user :""
 }
-export function Login(){
+export function Register(){
     const auth =getAuth();
     const [authing,setAuthing] = useState(false);
     const [error, setError] = useState("")
-    const userContex = useContext(UserContext)
     
     //const {user,setUser} = userContext;
     //userContext.setUser({email:"55",user:""})
@@ -26,39 +24,21 @@ export function Login(){
     
     //userContext.user && window.location.replace("./");
 
-    const signInWithGoogleWithPopup = async () =>{
-        setError("")
+    
+    
+    const registerWithGoogle = async()=> {
+       
         setAuthing(true);
-
-        signInWithPopup(auth, new GoogleAuthProvider()).then(response=>{
-            
-            if(response){
-              localStorage.setItem("LOG_STATE_SDM",JSON.stringify(true))
+        createUserWithEmailAndPassword(auth,userEmail, userPassword).then(response=>{
             console.log(response.user)
-            user.email = response.user.email,
-            user.user = response.user.displayName?.toLowerCase().trim()
-            //userContex.setUser(response.user)
-            location.reload()
-            
+            //navigate("/")
+            window.location.replace("./dashboard")
+        }).catch(error=>{
+            console.log(error)
+            if(error.message=="Firebase: Error (auth/email-already-in-use)."){
+              setError("Email-already-in-use")
             }
-        }).catch(error=>{
-            //console.log(error)
-            setError("Failed to log in")
-        })
-        setAuthing(false)
-        
-    }
-    const signInWithGoogleWithEmail = async () =>{
-        setError("")
-        setAuthing(true);
-        signInWithEmailAndPassword(auth,userEmail,userPassword).then(response=>{
-          localStorage.setItem("LOG_STATE_SDM",JSON.stringify(true))
-          console.log(response.user)
-            //navigate("/dashboard/")
-            location.reload()
-        }).catch(error=>{
-            //console.log(error)
-            setError("Failed to log in")
+            
         })
         setAuthing(false)
     }
@@ -67,6 +47,7 @@ export function Login(){
 
     const[userEmail,setUserEmail] = useState("");
     const[userPassword,setUserPassword] = useState("");
+    const[userPasswordCon,setUserPasswordCon] = useState("");
     function handleSubmit(e:FormEvent<HTMLFormElement>) {
         e.preventDefault();}
     return( <Container
@@ -96,13 +77,15 @@ export function Login(){
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" name="password" value={userPassword} onChange={(e)=>setUserPassword(e.target.value)}/>
+            </Form.Group>
+            <Form.Group id="password-con">
+              <Form.Label>Password Confirmation</Form.Label>
+              <Form.Control type="password" name="password" value={userPasswordCon} onChange={(e)=>setUserPasswordCon(e.target.value)}/>
             </Form.Group><br />
-            <Button style={{backgroundColor:"#487E6E",border:"none"}} disabled={authing} className="w-100" type="submit" onClick={()=>signInWithGoogleWithEmail()}>
-              Log In
-            </Button><br /><br />
-            <button  disabled={authing} className="w-100 btn btn-outline-dark" type="submit" onClick={()=>signInWithGoogleWithPopup()}>
-              Sign In with Google
-            </button>
+            <Button style={{backgroundColor:"#487E6E",border:"none"}} disabled={authing} className="w-100" type="submit" onClick={()=>registerWithGoogle()}>
+              Register
+            </Button>
+            
           </Form>
           <div className="w-100 text-center mt-3">
             <Link to="/forgot-password">Forgot Password?</Link>
@@ -110,7 +93,7 @@ export function Login(){
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        Need an account? <Link to="/register">Sign Up</Link>
+        Need an account? <Link to="/login">Log In</Link>
       </div>
       </div>
     </Container>

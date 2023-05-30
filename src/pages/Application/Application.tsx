@@ -5,7 +5,7 @@ import { StudentContactDetails } from "./StudentContactDetails";
 import { StudentFamilyImmigrationHistory } from "./StudentFamilyImmigrationHistory";
 import { StudentPassportAndVisaDetails } from "./StudentPassportAndVisaDetails";
 import { StudentWorkExpResumePersonalStatementDetails } from "./StudentWorkExpResumePersonalStatementDetails";
-import { useMultiStepForm } from "./useMultiStepForm";
+import { useMultiStepRender } from "../../Util/useMultiStepRender";
 import { onSnapshot } from "firebase/firestore";
 import { addStudent,checkStudentOnFS,studentsCollection } from "../../Util/Firebase/Controller";
 import { UserContext } from "../../Components/UserContext";
@@ -267,7 +267,7 @@ const [data, setData] = useState(getFormValue);
   })},[])*/
 
   //console.log(userContext.studentDoc.data)
-  const{steps,currentStepIndex,step, isFirstStep,back,next,isLastStep} = useMultiStepForm([
+  const{steps,currentStepIndex,step, isFirstStep,back,next,isLastStep} = useMultiStepRender([
   <MainStudentDetails {...data} updateFields={updateFields}/>,
   <StudentContactDetails {...data} updateFields={updateFields}/>,
   <StudentPassportAndVisaDetails {...data} updateFields={updateFields}/>,
@@ -281,7 +281,7 @@ const [data, setData] = useState(getFormValue);
   if(!isLastStep){return next()}
   else{
    const context = {uid:userContext.user?.uid,
-    displayname:userContext.user?.displayName}
+    displayname:userContext.user?.displayName?.toLowerCase()}
     const userDoc ={...data,...context}
     userContext.user != null? await checkStudentOnFS(userContext.user && userContext.user.uid, userContext.setStudentDoc)? setError("Already submitted..!") : addStudent({...userDoc},userContext,setError):  setError("Error occured..!")
     

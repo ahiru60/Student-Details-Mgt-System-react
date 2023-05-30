@@ -91,7 +91,7 @@ export function MainStudentDetails({
         </Form.Group>
         <Form.Group className="mb-3">
                 <Form.Label>If YES, please state:</Form.Label>
-                <Form.Control type="text" name="monash-Id"  value={monashId} onChange={e=> updateFields({monashId:e.target.value})} />
+                <Form.Control type="text" name="monash-Id"  value={monashId} onChange={e=> updateFields({monashId:e.target.value.trim()})} />
             </Form.Group>
             <Form.Group>
                 <Form.Label>Are you a currently enrolled Monash student?</Form.Label>
@@ -177,10 +177,10 @@ export function MainStudentDetails({
                 </Form.Control>
             </Form.Group><Form.Group>
                 <Form.Label>Surname:</Form.Label>
-                <Form.Control type="text" name="surname" value={surname} onChange={e=> updateFields({surname:e.target.value})}required/>
+                <Form.Control type="text" name="surname" value={surname} onChange={e=> updateFields({surname:e.target.value.toLowerCase()})}required/>
             </Form.Group><Form.Group>
                 <Form.Label>Other names:</Form.Label>
-                <Form.Control type="text" name="other-names" value={otherNames} onChange={e=> updateFields({otherNames:e.target.value})}required/>
+                <Form.Control type="text" name="other-names" value={otherNames} onChange={e=> updateFields({otherNames:e.target.value.toLowerCase()})}required/>
             </Form.Group><Form.Group>
                 <Form.Label>Gender:</Form.Label>
                 <Form.Control as="select" name="gender" value={gender} onChange={e=> updateFields({gender:e.target.value})}required>
@@ -193,7 +193,7 @@ export function MainStudentDetails({
                 <Form.Control type="date" name="date-of-birth" value={dateOfBirth} onChange={e=> updateFields({dateOfBirth:e.target.value})}required/>
             </Form.Group><Form.Group>
                 <Form.Label>Email:</Form.Label>
-                <Form.Control type="email" name="email" value={email} onChange={e=> updateFields({email:e.target.value})}required/>
+                <Form.Control type="email" name="email" value={email} onChange={e=> updateFields({email:e.target.value.trim()})}required/>
             </Form.Group><Form.Group>
                 <Form.Label>Do you have a disability?</Form.Label>
                 <div>

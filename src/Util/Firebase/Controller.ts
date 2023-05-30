@@ -1,4 +1,4 @@
-import {collection,deleteDoc,doc,getDoc,getDocs,getFirestore,query,setDoc,where} from "firebase/firestore";
+import {collection,deleteDoc,doc,getDoc,getDocs,getFirestore,or,query,setDoc,where} from "firebase/firestore";
   import { NavigateFunction } from "react-router-dom";
   // This is tree shaking from firestore
   import { app } from "../Firebase/Firebase";
@@ -36,19 +36,27 @@ import {userContextType } from "../../Components/UserContext"
     navigate("/");
   };
 
-  export const getStudent = async (keyWord:string | undefined)=>{
-    
+  export const searchStudents = async (keyWord:string | undefined)=>{
+      const keyWords = [keyWord]
       const q = query(
         studentsCollection,
         //  where('owner', '==', currentUserId),
-        where('uid', '==', keyWord) // does not need index
+        or(where('displayname', '==', keyWord), 
+        where('otherNames', '==', keyWord),
+        where('surname', '==', keyWord),
+        where('monashId', '==', keyWord),
+        where('passportNumber', '==', keyWord),
+        where('email', '==', keyWord),
+        where('nationality', '==', keyWord),
+        )// does not need index
         //  where('score', '<=', 100) // needs index  https://firebase.google.com/docs/firestore/query-data/indexing?authuser=1&hl=en
         // orderBy('score', 'asc'), // be aware of limitations: https://firebase.google.com/docs/firestore/query-data/order-limit-data#limitations
         // limit(1)
         
       );
-      const querySnapshot = await getDocs(q);
+      const querySnapshot = await getDocs(q)
       return querySnapshot
+      
 }
 
 export const checkStudentOnFS = async (keyWord:any,setStudentDoc:any)=>{

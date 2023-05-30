@@ -239,7 +239,7 @@ export function StudentWorkExpResumePersonalStatementDetails({
 
 <Form.Group>
   <Form.Label>Parent/Guardian's Email:</Form.Label>
-  <Form.Control type="text" name="parentGuardianEmail" value={parentGuardianEmail} onChange={e=> updateFields({parentGuardianEmail:e.target.value})} required/>
+  <Form.Control type="email" name="parentGuardianEmail" value={parentGuardianEmail} onChange={e=> updateFields({parentGuardianEmail:e.target.value.trim()})} required/>
 </Form.Group>
 
 <h4>ADDITIONAL QUESTIONS</h4>

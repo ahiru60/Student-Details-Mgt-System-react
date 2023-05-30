@@ -9,7 +9,7 @@ export function AuthRoute (props:any){
 
   useEffect(()=>{
     AuthCheck()
-  },[auth])
+  },[])
 
   const AuthCheck = onAuthStateChanged(auth,(user)=>{
     if(user){

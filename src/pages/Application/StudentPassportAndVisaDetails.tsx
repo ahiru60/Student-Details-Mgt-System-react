@@ -46,7 +46,7 @@ export function StudentPassportAndVisaDetails({
     
     <Form.Group>
       <Form.Label>Nationality (As per your passport):</Form.Label>
-      <Form.Control type="text" name="nationality" value={nationality} onChange={e=> updateFields({nationality:e.target.value})} autoFocus required/>
+      <Form.Control type="text" name="nationality" value={nationality.replace(nationality.charAt(0),nationality.charAt(0).toUpperCase())} onChange={e=> updateFields({nationality:e.target.value.toLowerCase()})} autoFocus required/>
     </Form.Group>
 
     <Form.Group>
@@ -310,7 +310,7 @@ export function StudentPassportAndVisaDetails({
 
     <Form.Group>
       <Form.Label>Passport Number:</Form.Label>
-      <Form.Control type="text" name="passportNumber" value={passportNumber} onChange={e=> updateFields({passportNumber:e.target.value})}required/>
+      <Form.Control type="text" name="passportNumber" value={passportNumber} onChange={e=> updateFields({passportNumber:e.target.value.trim()})}required/>
     </Form.Group>
 
     <Form.Group>
@@ -341,7 +341,7 @@ export function StudentPassportAndVisaDetails({
 
     <Form.Group>
       <Form.Label>If yes, Visa Grant Number:</Form.Label>
-      <Form.Control type="text" name="holdingAusVisaGrantNumber" value={holdingAusVisaGrantNumber} onChange={e=> updateFields({holdingAusVisaGrantNumber:e.target.value})}/>
+      <Form.Control type="text" name="holdingAusVisaGrantNumber" maxLength={13} value={holdingAusVisaGrantNumber} onChange={e=> updateFields({holdingAusVisaGrantNumber:e.target.value.trim()})}/>
     </Form.Group>
 
     <Form.Group>

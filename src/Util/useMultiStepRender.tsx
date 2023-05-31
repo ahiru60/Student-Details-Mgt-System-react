@@ -18,6 +18,8 @@ export function useMultiStepRender(steps:ReactElement[]){
         
     }
     function goTo(index:number){
+        //localStorage.setItem("NAV_INDEX_SDM_APP",index.toString())
+        //var localStoreIndex =localStorage.getItem("NAV_INDEX_SDM_APP")
        setCurrentStepIndex(index) 
     }
     return {

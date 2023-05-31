@@ -19,6 +19,23 @@ import {userContextType } from "../../Components/UserContext"
     console.log(studentData)
     
   };
+
+  export const getStudent = async (uid:string|null|undefined)=>{
+
+  if(uid){
+  const docRef = doc(firestore, "students", uid);
+  const docSnap = await getDoc(docRef);
+  
+  if (docSnap.exists()) {
+    console.log("Document data:", docSnap.data().displayname);
+     return(docSnap.data())
+  } else {
+  // docSnap.data() will be undefined in this case
+  return null
+  console.log("No such document!");
+  }}
+  }
+
   // EDIT A DOCUMENT / DESCRIPTION
   export const updateStudent = async (id: string | undefined, docData: FormData) => {
     const getStudent = doc(firestore, `students/${id}`);

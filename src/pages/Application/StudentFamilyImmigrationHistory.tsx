@@ -81,6 +81,7 @@ export function StudentFamilyImmigrationHistory({
         Will your spouse (if relevant) or dependent children accompany you during your Australian education?
       </Form.Label>
       <Form.Control as="select" name="familyMembers" value={familyMembers} onChange={e=> updateFields({familyMembers:e.target.value})}>
+        <option value="">Please Select</option>
         <option value="noFamilyMembers">No Family Members</option>
         <option value="spouse">Spouse</option>
         <option value="dependents">Dependents</option>

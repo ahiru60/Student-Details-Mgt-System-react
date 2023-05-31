@@ -179,6 +179,7 @@ export function StudentWorkExpResumePersonalStatementDetails({
 <Form.Group>
   <Form.Label>Have you taken an English proficiency test within the last 24 months?</Form.Label>
   <Form.Control as="select" name="englishProficiencyTest" value={englishProficiencyTest} onChange={e=> updateFields({englishProficiencyTest:e.target.value})} required>
+    <option value="">Please Select</option>
     <option value="haveTaken">I have taken an English proficiency test (e.g., IELTS/TOEFL/PTE)</option>
     <option value="haveNotTaken">I have not taken an English proficiency test (e.g., IELTS/TOEFL/PTE)</option>
   </Form.Control>
@@ -214,6 +215,7 @@ export function StudentWorkExpResumePersonalStatementDetails({
 <Form.Group>
   <Form.Label>How are you planning to support your studies?</Form.Label>
   <Form.Control as="select" name="studyFundMethod" value={studyFundMethod} onChange={e=> updateFields({studyFundMethod:e.target.value})} required>
+  <option value="">Please Select</option>
     <option value="personalFunds">Personal funds</option>
     <option value="parentalOrFamilySupport">Parental or family support</option>
     <option value="sponsorship">Sponsorship</option>
@@ -257,6 +259,7 @@ export function StudentWorkExpResumePersonalStatementDetails({
 <Form.Group>
   <Form.Label>Please indicate where you first heard about this University:</Form.Label>
   <Form.Control as="select" name="directedMedia" value={directedMedia} onChange={e=> updateFields({directedMedia:e.target.value})} required>
+  <option value="">Please Select</option>
     <option value="agent">Agent</option>
     <option value="socialMedia">Social Media</option>
     <option value="laThrobeUniversityWebsite">La Trobe University Website</option>

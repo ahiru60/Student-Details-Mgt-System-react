@@ -32,7 +32,8 @@ export function Register(){
         createUserWithEmailAndPassword(auth,userEmail, userPassword).then(response=>{
             console.log(response.user)
             //navigate("/")
-            window.location.replace("./dashboard")
+            localStorage.setItem("LOG_STATE_SDM",JSON.stringify(true))
+            location.reload()
         }).catch(error=>{
             console.log(error)
             if(error.message=="Firebase: Error (auth/email-already-in-use)."){
@@ -67,7 +68,7 @@ export function Register(){
           height:"auto"
           }} className="shadow-lg p-3 mb-5">
         <Card.Body>
-          <h1 className="text-center mb-4">LOGIN</h1>
+          <h1 className="text-center mb-4">REGISTER</h1>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">

@@ -46,7 +46,7 @@ export function StudentPassportAndVisaDetails({
     
     <Form.Group>
       <Form.Label>Nationality (As per your passport):</Form.Label>
-      <Form.Control type="text" name="nationality" value={nationality.replace(nationality.charAt(0),nationality.charAt(0).toUpperCase())} onChange={e=> updateFields({nationality:e.target.value.toLowerCase()})} autoFocus required/>
+      <Form.Control type="text" name="nationality" value={nationality?.replace(nationality.charAt(0),nationality.charAt(0).toUpperCase())} onChange={e=> updateFields({nationality:e.target.value.toLowerCase()})} autoFocus required/>
     </Form.Group>
 
     <Form.Group>

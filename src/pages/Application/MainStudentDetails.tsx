@@ -169,6 +169,7 @@ export function MainStudentDetails({
             </Form.Group><h4>PERSONAL DETAILS as per the Passport</h4><Form.Group> <br />
                 <Form.Label>Title:</Form.Label>
                 <Form.Control as="select" name="title" value={title} onChange={e=> updateFields({title:e.target.value})}required>
+                    <option value="">Please Select</option>
                     <option value="Mr">Mr</option>
                     <option value="Mrs">Mrs</option>
                     <option value="Miss">Miss</option>
@@ -184,6 +185,7 @@ export function MainStudentDetails({
             </Form.Group><Form.Group>
                 <Form.Label>Gender:</Form.Label>
                 <Form.Control as="select" name="gender" value={gender} onChange={e=> updateFields({gender:e.target.value})}required>
+                    <option value="">Please Select</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>

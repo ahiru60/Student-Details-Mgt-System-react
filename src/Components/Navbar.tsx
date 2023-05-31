@@ -16,6 +16,9 @@ export default function Header(){
     window.innerWidth
   ]);
 
+  useEffect(()=>{var localStoreIndex =localStorage.getItem("NAV_INDEX_SDM_APP")
+   goTo(Number(localStoreIndex?localStoreIndex: 1)) },[])
+
   useEffect(() => {
     const handleWindowResize = () => {
       setWindowSize([window.innerWidth, window.innerHeight]);
@@ -33,7 +36,8 @@ export default function Header(){
     setAuthing(true);
     signOut(auth).then(response=>{
       localStorage.setItem("LOG_STATE_SDM",JSON.stringify(false))
-        location.reload()
+      localStorage.clear();  
+      location.replace("/login")
 
     }).catch(error=>{
 
@@ -41,18 +45,20 @@ export default function Header(){
         setAuthing(false)
         
     })
+
+    
     
     
 }
 
 const{steps,currentStepIndex,step, isFirstStep,back,next,isLastStep,goTo} = useMultiStepRender([
   //<MainStudentDetails {...data} updateFields={updateFields}/>,
-  
+  <></>,
   <Dashboard/>,
   <Application/>
 ])
   
-  
+
   
  
 
@@ -62,10 +68,10 @@ const{steps,currentStepIndex,step, isFirstStep,back,next,isLastStep,goTo} = useM
   {windowSize[0]> 500 &&<Nav.Link className="navbar navbar-brand text-light " style={{margin:"2px 5px"}} onClick={()=>{}}>THIS WEBSITE NAME</Nav.Link>}
   </Nav.Item>
     <Nav.Item className="table-hover">
-    <Nav.Link style={{color:"white",fontSize:"17.5px", fontWeight:"200"}} onClick={()=>{goTo(0)}} hidden={userContext.user == null? true : false} >Dashboard</Nav.Link>
+    <Nav.Link style={{color:"white",fontSize:"17.5px", fontWeight:"200"}} onClick={()=>{goTo(1); localStorage.setItem("NAV_INDEX_SDM_APP","1")}} hidden={userContext.user == null? true : false} >Dashboard</Nav.Link>
   </Nav.Item>
   <Nav.Item>
-    <Nav.Link style={{color:"white",fontSize:"17.5px", fontWeight:"200"}} onClick={()=>{goTo(1)}} hidden={userContext.user == null? true : false}>Application</Nav.Link>
+    <Nav.Link style={{color:"white",fontSize:"17.5px", fontWeight:"200"}} onClick={()=>{goTo(2);localStorage.setItem("NAV_INDEX_SDM_APP","2")}} hidden={userContext.user == null? true : false}>Application</Nav.Link>
   </Nav.Item>
   
   </Nav> {windowSize[0]> 963 && <button style={{backgroundColor:"#edb077",borderRadius:"5px",padding:"2px 10px",margin:"1px 1px",marginLeft:"18px", fontWeight:"200", fontSize:"17.5px", border:"none",height:"2.2rem",position:"absolute",right:"2.8vw" }} className="nav-link navbar-brand text-light" onClick={()=>logoutWithGoogle()} hidden={userContext.user == null? true : false}>Logout</button>}

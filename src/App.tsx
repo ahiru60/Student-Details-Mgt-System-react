@@ -1,6 +1,6 @@
 
 import Application from "./pages/Application/Application"
-import {BrowserRouter,Routes,Route} from "react-router-dom"
+import {BrowserRouter,Routes,Route, Navigate} from "react-router-dom"
 import { AuthRoute } from "./Util/Firebase/AuthRoute"
 import { Dashboard } from "./pages/Dashboard/Dashboard"
 import { Login } from "./pages/Login/Login"
@@ -12,14 +12,18 @@ import { NotFound } from "./pages/NotFound"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 
 function App() {
-    const userContex = useContext(UserContext)
 
    const logged = localStorage.getItem("LOG_STATE_SDM")
+   var localStoreIndex =localStorage.getItem("NAV_INDEX_SDM_APP")
     
  return (<>
  
  <Routes>
- { logged == "true"?<Route path="*" element={<UserContextProvider><Header></Header></UserContextProvider>}/>:<Route path="*" element={<UserContextProvider><Login/></UserContextProvider>}/>}
+ { logged == "true"?
+ <Route path="*" element={<UserContextProvider><Header></Header></UserContextProvider>}/>:
+ <><Route path="/login" element={<UserContextProvider><Login/></UserContextProvider>}/>
+ <Route path="/register" element={<UserContextProvider><Register/></UserContextProvider>}/>
+ <Route path='*' element={<Navigate to='/login' />} /></>}
  
  </Routes>
  

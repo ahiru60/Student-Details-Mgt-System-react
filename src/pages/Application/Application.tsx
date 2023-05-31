@@ -7,8 +7,9 @@ import { StudentPassportAndVisaDetails } from "./StudentPassportAndVisaDetails";
 import { StudentWorkExpResumePersonalStatementDetails } from "./StudentWorkExpResumePersonalStatementDetails";
 import { useMultiStepRender } from "../../Util/useMultiStepRender";
 import { onSnapshot } from "firebase/firestore";
-import { addStudent,checkStudentOnFS,studentsCollection } from "../../Util/Firebase/Controller";
+import { addStudent,checkStudentOnFS,getStudent,studentsCollection } from "../../Util/Firebase/Controller";
 import { UserContext } from "../../Components/UserContext";
+import { getAuth } from "firebase/auth";
 
 export type FormData = {
       uid: string | undefined,
@@ -234,21 +235,39 @@ export default function Application(){
 
 } 
 
-function getFormValue(){
+const localStoreFormData = localStorage.getItem("FORM_DATA_ON_UPDATE_SDM_APP")
+if(!localStoreFormData){
+  getStudent(getAuth().currentUser?.uid).then(response=>{
+    console.log(response)
+    localStorage.setItem("FORM_DATA_ON_UPDATE_SDM_APP",JSON.stringify(response))
+    location.reload()
+  }
+    
+  ).catch(
+    error=>{
+      console.log(error.message)
+    }
+  )
+}
+
+  function getFormValue(){
+  
+  const sendingDataDB = {}
+
   const storedLocalValues = localStorage.getItem("FORM_DATA_ON_UPDATE_SDM_APP")
-  if(!storedLocalValues) return INITIAL_DATA
-  return JSON.parse(storedLocalValues)
+  if(storedLocalValues){return JSON.parse(storedLocalValues)}
+  //else if(studentDataDB){return  }
+  else{return INITIAL_DATA}
 }
 
 const [data, setData] = useState(getFormValue);
 
-    useEffect(()=>{
-      localStorage.setItem("FORM_DATA_ON_UPDATE_SDM_APP",JSON.stringify(data))
-      console.log("updating..")
-    },[updateFields])
-    
 
-   
+
+    useEffect(()=>{
+      data&& localStorage.setItem("FORM_DATA_ON_UPDATE_SDM_APP",JSON.stringify(data))
+      //console.log("updating..")
+    },[updateFields])
 
   function updateFields(fields: Partial<FormData>){
     setData((prev: any)=>{
@@ -280,8 +299,11 @@ const [data, setData] = useState(getFormValue);
   e.preventDefault()
   if(!isLastStep){return next()}
   else{
+    var parsedData
+    const storedLocalValues = localStorage.getItem("FORM_DATA_ON_UPDATE_SDM_APP")
+  if(storedLocalValues){parsedData =JSON.parse(storedLocalValues)}
    const context = {uid:userContext.user?.uid,
-    displayname:userContext.user?.displayName?.toLowerCase()}
+    displayname:`${parsedData.otherNames.toLowerCase()} ${parsedData.surname.toLowerCase()}`}
     const userDoc ={...data,...context}
     userContext.user != null? await checkStudentOnFS(userContext.user && userContext.user.uid, userContext.setStudentDoc)? setError("Already submitted..!") : addStudent({...userDoc},userContext,setError):  setError("Error occured..!")
     

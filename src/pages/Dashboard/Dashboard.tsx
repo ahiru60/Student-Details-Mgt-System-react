@@ -107,42 +107,69 @@ export function Dashboard(){
         </div>
       
     </div>
-    <div className="col text-bg-success" style={{maxWidth:"32vw",height:"80vh"}}>
+    <div className="col " style={{maxWidth:"32vw",height:"80vh" ,}}>
       <div style={{
           position:'relative',
           background:'white',
-          border: '1px solid black',
+          //border: '1px solid black',
           padding:"3%", paddingBottom:"1%",
           margin:'4% 1%', fontSize:'100%',
-          maxWidth:'100%'
+          maxWidth:'100%',
+          backgroundColor:"#f5f5f5"
           }}
-          className="shadow rounded">
-        <Form>
+          className=" rounded">
+        <Form >
           <div style={{
             marginTop:'1rem',
             display:'flex',
             gap:".5rem",
             justifyContent:'flex-end',
-            color:"black"
+            color:"black",
+            
           }}>
     
-        <Form.Control type="text" placeholder="Search" value={searchKeyword} onChange={e=>{setSearchKeyword(e.target.value);searchHandel(e.target.value.toLowerCase())}}></Form.Control>
+        <Form.Control style={{boxShadow:"none",border: "grey"}} type="search" placeholder="Search" value={searchKeyword} onChange={e=>{setSearchKeyword(e.target.value);searchHandel(e.target.value.toLowerCase())}}></Form.Control>
           {/* <Button onClick={()=>{searchHandel(searchKeyword)}}>Search</Button> */}
             
           </div>
-          <div style={{
-            marginTop:"3rem",
+          <p style={{fontSize:"0.7rem",margin:"0.3rem",color:"#757575",marginLeft:"0.4rem"}}>Email, Surname or Other name, Nationality, MonashID, Passport Number </p>
+          <div className="rounded scrollbar" style={{
+            marginTop:"1.2rem",
+            padding:"0.8rem 0rem",
+            paddingTop:"0rem",
+            paddingRight:"0.2rem",
             position:'relative',
             bottom:'.7rem',
-            display:'flex',
-            justifyContent:"center",
-            fontSize:'1.1rem',
-            fontWeight:'700'
+            justifyContent:"start",
+            fontSize:'0.785rem',
+            fontWeight:'500',
+            backgroundColor:"rgba(52, 52, 52, 0.0)",
+            maxHeight:"600px",
+            overflow:"hidden",
+            overflowY: "scroll"
+
           }}>
-            {
-              
-              searchData?.docs.map((doc: { data: () => any; }) => <p style={{color:"black"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</p>)
-            }
+
+            {searchData?.docs.map((doc: { data: () => any; }) => <div id="searchResult" className="rounded" style={{color:"black",marginTop:"0.2rem",padding:"0.3rem 1rem",cursor:"pointer"}}><div style={{fontSize:"1rem",fontWeight:"600",color:"#424242",pointerEvents: "none"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</div><div style={{pointerEvents: "none"}}>{`${doc.data().monashId?doc.data().monashId:""} ${doc.data().passportNumber?doc.data().passportNumber:""} ${doc.data().nationality?doc.data().nationality.charAt(0).toUpperCase() + doc.data().nationality.slice(1):""} ${doc.data().email?doc.data().email:""}`}</div></div>)}
+            {searchData?.docs.map((doc: { data: () => any; }) => <div id="searchResult" className="rounded" style={{color:"black",marginTop:"0.2rem",padding:"0.3rem 1rem",cursor:"pointer"}}><div style={{fontSize:"1rem",fontWeight:"600",color:"#424242",pointerEvents: "none"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</div><div style={{pointerEvents: "none"}}>{`${doc.data().monashId?doc.data().monashId:""} ${doc.data().passportNumber?doc.data().passportNumber:""} ${doc.data().nationality?doc.data().nationality.charAt(0).toUpperCase() + doc.data().nationality.slice(1):""} ${doc.data().email?doc.data().email:""}`}</div></div>)}
+            {searchData?.docs.map((doc: { data: () => any; }) => <div id="searchResult" className="rounded" style={{color:"black",marginTop:"0.2rem",padding:"0.3rem 1rem",cursor:"pointer"}}><div style={{fontSize:"1rem",fontWeight:"600",color:"#424242",pointerEvents: "none"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</div><div style={{pointerEvents: "none"}}>{`${doc.data().monashId?doc.data().monashId:""} ${doc.data().passportNumber?doc.data().passportNumber:""} ${doc.data().nationality?doc.data().nationality.charAt(0).toUpperCase() + doc.data().nationality.slice(1):""} ${doc.data().email?doc.data().email:""}`}</div></div>)}
+            {searchData?.docs.map((doc: { data: () => any; }) => <div id="searchResult" className="rounded" style={{color:"black",marginTop:"0.2rem",padding:"0.3rem 1rem",cursor:"pointer"}}><div style={{fontSize:"1rem",fontWeight:"600",color:"#424242",pointerEvents: "none"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</div><div style={{pointerEvents: "none"}}>{`${doc.data().monashId?doc.data().monashId:""} ${doc.data().passportNumber?doc.data().passportNumber:""} ${doc.data().nationality?doc.data().nationality.charAt(0).toUpperCase() + doc.data().nationality.slice(1):""} ${doc.data().email?doc.data().email:""}`}</div></div>)}
+            {searchData?.docs.map((doc: { data: () => any; }) => <div id="searchResult" className="rounded" style={{color:"black",marginTop:"0.2rem",padding:"0.3rem 1rem",cursor:"pointer"}}><div style={{fontSize:"1rem",fontWeight:"600",color:"#424242",pointerEvents: "none"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</div><div style={{pointerEvents: "none"}}>{`${doc.data().monashId?doc.data().monashId:""} ${doc.data().passportNumber?doc.data().passportNumber:""} ${doc.data().nationality?doc.data().nationality.charAt(0).toUpperCase() + doc.data().nationality.slice(1):""} ${doc.data().email?doc.data().email:""}`}</div></div>)}
+            {searchData?.docs.map((doc: { data: () => any; }) => <div id="searchResult" className="rounded" style={{color:"black",marginTop:"0.2rem",padding:"0.3rem 1rem",cursor:"pointer"}}><div style={{fontSize:"1rem",fontWeight:"600",color:"#424242",pointerEvents: "none"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</div><div style={{pointerEvents: "none"}}>{`${doc.data().monashId?doc.data().monashId:""} ${doc.data().passportNumber?doc.data().passportNumber:""} ${doc.data().nationality?doc.data().nationality.charAt(0).toUpperCase() + doc.data().nationality.slice(1):""} ${doc.data().email?doc.data().email:""}`}</div></div>)}
+            {searchData?.docs.map((doc: { data: () => any; }) => <div id="searchResult" className="rounded" style={{color:"black",marginTop:"0.2rem",padding:"0.3rem 1rem",cursor:"pointer"}}><div style={{fontSize:"1rem",fontWeight:"600",color:"#424242",pointerEvents: "none"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</div><div style={{pointerEvents: "none"}}>{`${doc.data().monashId?doc.data().monashId:""} ${doc.data().passportNumber?doc.data().passportNumber:""} ${doc.data().nationality?doc.data().nationality.charAt(0).toUpperCase() + doc.data().nationality.slice(1):""} ${doc.data().email?doc.data().email:""}`}</div></div>)}
+            {searchData?.docs.map((doc: { data: () => any; }) => <div id="searchResult" className="rounded" style={{color:"black",marginTop:"0.2rem",padding:"0.3rem 1rem",cursor:"pointer"}}><div style={{fontSize:"1rem",fontWeight:"600",color:"#424242",pointerEvents: "none"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</div><div style={{pointerEvents: "none"}}>{`${doc.data().monashId?doc.data().monashId:""} ${doc.data().passportNumber?doc.data().passportNumber:""} ${doc.data().nationality?doc.data().nationality.charAt(0).toUpperCase() + doc.data().nationality.slice(1):""} ${doc.data().email?doc.data().email:""}`}</div></div>)}
+            {searchData?.docs.map((doc: { data: () => any; }) => <div id="searchResult" className="rounded" style={{color:"black",marginTop:"0.2rem",padding:"0.3rem 1rem",cursor:"pointer"}}><div style={{fontSize:"1rem",fontWeight:"600",color:"#424242",pointerEvents: "none"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</div><div style={{pointerEvents: "none"}}>{`${doc.data().monashId?doc.data().monashId:""} ${doc.data().passportNumber?doc.data().passportNumber:""} ${doc.data().nationality?doc.data().nationality.charAt(0).toUpperCase() + doc.data().nationality.slice(1):""} ${doc.data().email?doc.data().email:""}`}</div></div>)}
+            {searchData?.docs.map((doc: { data: () => any; }) => <div id="searchResult" className="rounded" style={{color:"black",marginTop:"0.2rem",padding:"0.3rem 1rem",cursor:"pointer"}}><div style={{fontSize:"1rem",fontWeight:"600",color:"#424242",pointerEvents: "none"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</div><div style={{pointerEvents: "none"}}>{`${doc.data().monashId?doc.data().monashId:""} ${doc.data().passportNumber?doc.data().passportNumber:""} ${doc.data().nationality?doc.data().nationality.charAt(0).toUpperCase() + doc.data().nationality.slice(1):""} ${doc.data().email?doc.data().email:""}`}</div></div>)}
+            {searchData?.docs.map((doc: { data: () => any; }) => <div id="searchResult" className="rounded" style={{color:"black",marginTop:"0.2rem",padding:"0.3rem 1rem",cursor:"pointer"}}><div style={{fontSize:"1rem",fontWeight:"600",color:"#424242",pointerEvents: "none"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</div><div style={{pointerEvents: "none"}}>{`${doc.data().monashId?doc.data().monashId:""} ${doc.data().passportNumber?doc.data().passportNumber:""} ${doc.data().nationality?doc.data().nationality.charAt(0).toUpperCase() + doc.data().nationality.slice(1):""} ${doc.data().email?doc.data().email:""}`}</div></div>)}
+            {searchData?.docs.map((doc: { data: () => any; }) => <div id="searchResult" className="rounded" style={{color:"black",marginTop:"0.2rem",padding:"0.3rem 1rem",cursor:"pointer"}}><div style={{fontSize:"1rem",fontWeight:"600",color:"#424242",pointerEvents: "none"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</div><div style={{pointerEvents: "none"}}>{`${doc.data().monashId?doc.data().monashId:""} ${doc.data().passportNumber?doc.data().passportNumber:""} ${doc.data().nationality?doc.data().nationality.charAt(0).toUpperCase() + doc.data().nationality.slice(1):""} ${doc.data().email?doc.data().email:""}`}</div></div>)}
+            {searchData?.docs.map((doc: { data: () => any; }) => <div id="searchResult" className="rounded" style={{color:"black",marginTop:"0.2rem",padding:"0.3rem 1rem",cursor:"pointer"}}><div style={{fontSize:"1rem",fontWeight:"600",color:"#424242",pointerEvents: "none"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</div><div style={{pointerEvents: "none"}}>{`${doc.data().monashId?doc.data().monashId:""} ${doc.data().passportNumber?doc.data().passportNumber:""} ${doc.data().nationality?doc.data().nationality.charAt(0).toUpperCase() + doc.data().nationality.slice(1):""} ${doc.data().email?doc.data().email:""}`}</div></div>)}
+            {searchData?.docs.map((doc: { data: () => any; }) => <div id="searchResult" className="rounded" style={{color:"black",marginTop:"0.2rem",padding:"0.3rem 1rem",cursor:"pointer"}}><div style={{fontSize:"1rem",fontWeight:"600",color:"#424242",pointerEvents: "none"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</div><div style={{pointerEvents: "none"}}>{`${doc.data().monashId?doc.data().monashId:""} ${doc.data().passportNumber?doc.data().passportNumber:""} ${doc.data().nationality?doc.data().nationality.charAt(0).toUpperCase() + doc.data().nationality.slice(1):""} ${doc.data().email?doc.data().email:""}`}</div></div>)}
+            {searchData?.docs.map((doc: { data: () => any; }) => <div id="searchResult" className="rounded" style={{color:"black",marginTop:"0.2rem",padding:"0.3rem 1rem",cursor:"pointer"}}><div style={{fontSize:"1rem",fontWeight:"600",color:"#424242",pointerEvents: "none"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</div><div style={{pointerEvents: "none"}}>{`${doc.data().monashId?doc.data().monashId:""} ${doc.data().passportNumber?doc.data().passportNumber:""} ${doc.data().nationality?doc.data().nationality.charAt(0).toUpperCase() + doc.data().nationality.slice(1):""} ${doc.data().email?doc.data().email:""}`}</div></div>)}
+            {searchData?.docs.map((doc: { data: () => any; }) => <div id="searchResult" className="rounded" style={{color:"black",marginTop:"0.2rem",padding:"0.3rem 1rem",cursor:"pointer"}}><div style={{fontSize:"1rem",fontWeight:"600",color:"#424242",pointerEvents: "none"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</div><div style={{pointerEvents: "none"}}>{`${doc.data().monashId?doc.data().monashId:""} ${doc.data().passportNumber?doc.data().passportNumber:""} ${doc.data().nationality?doc.data().nationality.charAt(0).toUpperCase() + doc.data().nationality.slice(1):""} ${doc.data().email?doc.data().email:""}`}</div></div>)}
+            {searchData?.docs.map((doc: { data: () => any; }) => <div id="searchResult" className="rounded" style={{color:"black",marginTop:"0.2rem",padding:"0.3rem 1rem",cursor:"pointer"}}><div style={{fontSize:"1rem",fontWeight:"600",color:"#424242",pointerEvents: "none"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</div><div style={{pointerEvents: "none"}}>{`${doc.data().monashId?doc.data().monashId:""} ${doc.data().passportNumber?doc.data().passportNumber:""} ${doc.data().nationality?doc.data().nationality.charAt(0).toUpperCase() + doc.data().nationality.slice(1):""} ${doc.data().email?doc.data().email:""}`}</div></div>)}
+            {searchData?.docs.map((doc: { data: () => any; }) => <div id="searchResult" className="rounded" style={{color:"black",marginTop:"0.2rem",padding:"0.3rem 1rem",cursor:"pointer"}}><div style={{fontSize:"1rem",fontWeight:"600",color:"#424242",pointerEvents: "none"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</div><div style={{pointerEvents: "none"}}>{`${doc.data().monashId?doc.data().monashId:""} ${doc.data().passportNumber?doc.data().passportNumber:""} ${doc.data().nationality?doc.data().nationality.charAt(0).toUpperCase() + doc.data().nationality.slice(1):""} ${doc.data().email?doc.data().email:""}`}</div></div>)}
+            {searchData?.docs.map((doc: { data: () => any; }) => <div id="searchResult" className="rounded" style={{color:"black",marginTop:"0.2rem",padding:"0.3rem 1rem",cursor:"pointer"}}><div style={{fontSize:"1rem",fontWeight:"600",color:"#424242",pointerEvents: "none"}}>{ `${doc.data().title}. ${doc.data().otherNames.charAt(0).toUpperCase() + doc.data().otherNames.slice(1)} ${doc.data().surname}`}</div><div style={{pointerEvents: "none"}}>{`${doc.data().monashId?doc.data().monashId:""} ${doc.data().passportNumber?doc.data().passportNumber:""} ${doc.data().nationality?doc.data().nationality.charAt(0).toUpperCase() + doc.data().nationality.slice(1):""} ${doc.data().email?doc.data().email:""}`}</div></div>)}
+            
           </div>
         </Form>
             

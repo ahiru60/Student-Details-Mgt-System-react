@@ -91,6 +91,16 @@ export const checkStudentOnFS = async (keyWord:any,setStudentDoc:any)=>{
       return (false)
   }
 }
-      
   
-  
+export const checkStaff = (uid:string|null|undefined)=>{
+  let state
+  if(uid){
+  const docRef = doc(firestore, "staff", uid);
+  const docSnap = getDoc(docRef);
+  docSnap.then(async ()=>{
+    state = (await docSnap).id
+    console.log((await docSnap).id)
+    return state
+  })
+  return state
+  } }

@@ -10,11 +10,13 @@ import { Register } from "./pages/Login/Register"
 import { useContext, useEffect, useState } from "react"
 import { NotFound } from "./pages/NotFound"
 import { getAuth, onAuthStateChanged } from "firebase/auth"
+import { checkStaff } from "./Util/Firebase/Controller"
 
 function App() {
 
    const logged = localStorage.getItem("LOG_STATE_SDM")
    var localStoreIndex =localStorage.getItem("NAV_INDEX_SDM_APP")
+   
     
  return (<>
  

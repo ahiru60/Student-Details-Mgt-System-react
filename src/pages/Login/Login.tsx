@@ -37,7 +37,7 @@ export function Login(){
             console.log(response.user)
             user.email = response.user.email,
             user.user = response.user.displayName?.toLowerCase().trim()
-            //userContex.setUser(response.user)
+            userContex.setUser(response.user)
             location.reload()
             
             }

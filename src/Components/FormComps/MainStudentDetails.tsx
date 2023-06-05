@@ -79,7 +79,7 @@ export function MainStudentDetails({
 
 } : MainDetailsProps){
     return (
-        <FormWrapper title={otherNames?`${otherNames.charAt(0).toUpperCase+otherNames.slice(1)}'s | BASIC DETAILS`:"APPLICATION | BASIC DETAILS"} >
+        <FormWrapper title={otherNames?`${otherNames.charAt(0).toUpperCase() + otherNames.slice(1)}'s | BASIC DETAILS`:"APPLICATION | BASIC DETAILS"} >
             
                 <div className="--bs-info --bs-info-rgb">
                 <Form.Group className="mb-3">

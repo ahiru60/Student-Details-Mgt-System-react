@@ -1,7 +1,7 @@
 import { FormEvent, useContext, useEffect, useState } from "react"
 import { UserContext } from "../../Components/UserContext"
 import { Button, Card, Fade, Form } from "react-bootstrap"
-import { checkStaff, getStudent, searchStudents } from "../../Util/Firebase/Controller";
+import { checkStaff, checkStudentOnFS, getStudent, searchStudents } from "../../Util/Firebase/Controller";
 import { QuerySnapshot, DocumentData, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth/cordova";
 import { PulseLoader } from "react-spinners";
@@ -134,7 +134,7 @@ function updateFields(fields: Partial<FormData>){
      const context = {uid:userContext.user?.uid,
       displayname:`${parsedData.otherNames.toLowerCase()} ${parsedData.surname.toLowerCase()}`}
       const userDoc ={...displayData,...context}
-      //userContext.user != null? await checkStudentOnFS(userContext.user && userContext.user.uid, userContext.setStudentDoc)? setError("Already submitted..!") : addStudent({...userDoc},userContext,setError):  setError("Error occured..!")
+      userContext.user != null? await checkStudentOnFS(userContext.user && userContext.user.uid, userContext.setStudentDoc)? setError("Already submitted..!") : addStudent({...userDoc},userContext,setError):  setError("Error occured..!")
       
       //alert("mysql")
     }

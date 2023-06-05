@@ -14,7 +14,8 @@ type userData = {
   ausVisaBreach: string,
   ausVisaRefuse: string,
   protectionVisa: string,
-  criminalOffence: string
+  criminalOffence: string,
+  otherNames:string
   
 }
 
@@ -38,11 +39,12 @@ export function StudentPassportAndVisaDetails({
   ausVisaRefuse,
   protectionVisa,
   criminalOffence,
+  otherNames,
   updateFields
 
 }:PassportAndVisaDetailsProps){
    return(
-   <FormWrapper title="APPLICATION | PASSPORT AND VISA DETAILS">
+   <FormWrapper title={otherNames?`${otherNames}'s | PASSPORT AND VISA DETAILS`:"APPLICATION | PASSPORT AND VISA DETAILS"}>
     
     <Form.Group>
       <Form.Label>Nationality (As per your passport):</Form.Label>

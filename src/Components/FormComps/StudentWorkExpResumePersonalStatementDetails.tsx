@@ -18,6 +18,7 @@ type userData = {
     careerAspirationNote: string,
     universityChoiceNote: string,
     directedMedia: string
+    otherNames:string
   
 }
 
@@ -44,10 +45,11 @@ export function StudentWorkExpResumePersonalStatementDetails({
     careerAspirationNote,
     universityChoiceNote,
     directedMedia,
+    otherNames,
     updateFields
 
   }:WorkExpResumePersonalStatementDetailsProps){
-   return(<FormWrapper title={"APPLICATION | WORK EXPERIENCE/RESUME/PERSONAL STATEMENT"}>
+   return(<FormWrapper title={otherNames?`${otherNames}'s | WORK EXPERIENCE/RESUME/PERSONAL STATEMENT`:"APPLICATION | WORK EXPERIENCE/RESUME/PERSONAL STATEMENT"}>
 <Form.Group>
   <Form.Label>Do you have any relevant work experience you'd like to be considered for admissions?</Form.Label>
   <div>

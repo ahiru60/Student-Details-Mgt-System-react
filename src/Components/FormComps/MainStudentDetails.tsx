@@ -79,7 +79,7 @@ export function MainStudentDetails({
 
 } : MainDetailsProps){
     return (
-        <FormWrapper title={"APPLICATION | BASIC DETAILS"} >
+        <FormWrapper title={otherNames?`${otherNames.charAt(0).toUpperCase+otherNames.slice(1)}'s | BASIC DETAILS`:"APPLICATION | BASIC DETAILS"} >
             
                 <div className="--bs-info --bs-info-rgb">
                 <Form.Group className="mb-3">
@@ -178,10 +178,10 @@ export function MainStudentDetails({
                 </Form.Control>
             </Form.Group><Form.Group>
                 <Form.Label>Surname:</Form.Label>
-                <Form.Control type="text" name="surname" value={surname} onChange={e=> updateFields({surname:e.target.value.toLowerCase()})}required/>
+                <Form.Control type="text" name="surname" value={surname} onChange={e=> updateFields({surname:e.target.value.toLowerCase()})} required/>
             </Form.Group><Form.Group>
                 <Form.Label>Other names:</Form.Label>
-                <Form.Control type="text" name="other-names" value={otherNames} onChange={e=> updateFields({otherNames:e.target.value.toLowerCase()})}required/>
+                <Form.Control type="text" name="other-names" value={otherNames} onChange={e=> updateFields({otherNames:e.target.value.toLowerCase()})} required/>
             </Form.Group><Form.Group>
                 <Form.Label>Gender:</Form.Label>
                 <Form.Control as="select" name="gender" value={gender} onChange={e=> updateFields({gender:e.target.value})}required>

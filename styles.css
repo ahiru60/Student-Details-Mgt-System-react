@@ -1,3 +1,8 @@
+*{
+  border-color: #487E6E;
+  
+  
+}
 #searchResult:hover{
     background-color: rgb(224, 219, 219);
 }
@@ -14,7 +19,7 @@
   
   ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: #487E6E;
     position: absolute;
     right: 100px;
   }

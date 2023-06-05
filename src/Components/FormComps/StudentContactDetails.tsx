@@ -20,7 +20,8 @@ type userData = {
     postalAddressLine3: string,
     postalPostalCode: string,
     postalMobileNumber: string,
-    postalLandlineNumber: string
+    postalLandlineNumber: string,
+    otherNames:string
 }
 
 type ContactDetailsProps = userData & {
@@ -48,10 +49,11 @@ export function StudentContactDetails({
     postalPostalCode,
     postalMobileNumber,
     postalLandlineNumber,
+    otherNames,
     updateFields
 
   } : ContactDetailsProps){
-   return(<FormWrapper title="APPLICATION | CONTACT DETAILS">
+   return(<FormWrapper title={otherNames?`${otherNames}'s | CONTACT DETAILS`:"APPLICATION | CONTACT DETAILS"}>
     <h4>Permanent Address</h4>
     <Form.Group>
             <Form.Label>Country and Region:</Form.Label>

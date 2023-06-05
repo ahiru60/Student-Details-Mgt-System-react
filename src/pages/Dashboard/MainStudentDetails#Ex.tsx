@@ -1,6 +1,6 @@
 //import { FormWrapper } from "./FormWrapper";
 import { Form } from 'react-bootstrap';
-import { FormWrapper } from '../Application/FormWrapper';
+import { FormWrapper } from '../../Components/FormComps/FormWrapper';
 
 type userData = {
     

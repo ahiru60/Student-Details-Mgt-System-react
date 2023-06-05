@@ -6,7 +6,11 @@ import { QuerySnapshot, DocumentData, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth/cordova";
 import { PulseLoader } from "react-spinners";
 import { useMultiStepRender } from "../../Util/useMultiStepRender";
-import { MainStudentDetails } from "./MainStudentDetails";
+import { MainStudentDetails } from "../../Components/FormComps/MainStudentDetails";
+import { StudentContactDetails } from "../../Components/FormComps/StudentContactDetails";
+import { StudentFamilyImmigrationHistory } from "../../Components/FormComps/StudentFamilyImmigrationHistory";
+import { StudentPassportAndVisaDetails } from "../../Components/FormComps/StudentPassportAndVisaDetails";
+import { StudentWorkExpResumePersonalStatementDetails } from "../../Components/FormComps/StudentWorkExpResumePersonalStatementDetails";
 
 export function Dashboard(){
   
@@ -65,10 +69,16 @@ useEffect(()=>{
   //console.log("updating..")
 },[updateFields])
 
+const [editing,setEditing]=useState(false);
+
 function updateFields(fields: Partial<FormData>){
+  if(editing){
   setDisplayData((prev: any)=>{
     return{...prev,...fields}
-  })
+  })}
+  else{
+    return null
+  }
   //updateStudent( e,{...data});
   
 }
@@ -107,7 +117,11 @@ function updateFields(fields: Partial<FormData>){
   }
 
   const{steps,currentStepIndex,step, isFirstStep,back,next,isLastStep} = useMultiStepRender([
-    <MainStudentDetails {...displayData} updateFields={updateFields}/>
+    <MainStudentDetails {...displayData} updateFields={updateFields}/>,
+    <StudentContactDetails {...displayData} updateFields={updateFields}/>,
+    <StudentPassportAndVisaDetails {...displayData} updateFields={updateFields}/>,
+    <StudentFamilyImmigrationHistory {...displayData} updateFields={updateFields}/>,
+    <StudentWorkExpResumePersonalStatementDetails {...displayData} updateFields={updateFields}/>
   ])
 
   async function onSubmit(e:FormEvent){ 
@@ -141,11 +155,11 @@ function updateFields(fields: Partial<FormData>){
           maxWidth:'100%'
           }}
           className="shadow rounded">
-        <Form style={{color:"grey"}}>
+        <Form style={{color:"grey"}} onSubmit={onSubmit}>
           <div style={{
             marginTop:'0rem',
             gap:".5rem",
-            color:"black"
+            color:"black",
           }}>
     
           {step}
@@ -161,9 +175,9 @@ function updateFields(fields: Partial<FormData>){
             color:"black"
           }}>
             
-            {!isFirstStep && <button className='btn btn-outline-dark' type="button" onClick={back}>Back</button>}
+            {!isFirstStep && <button className='btn btn-outline-dark' style={{marginRight:"15px"}} type="button" onClick={back}>Back</button>}
     
-          <button className={isLastStep ? 'btn btn-success': 'btn btn-dark' } type="submit">{!isLastStep ? 'Next':'Save'}</button>
+          {!editing && isLastStep?<></>:<button className={isLastStep ? 'btn btn-success': 'btn btn-dark' } type="submit">{!isLastStep ? 'Next':'Save'}</button>}
           </div>
         </Form>
         

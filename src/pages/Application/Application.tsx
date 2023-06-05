@@ -1,15 +1,15 @@
 import { useState, FormEvent, useEffect, useContext } from "react";
 import { Alert, Form } from 'react-bootstrap';
-import { MainStudentDetails } from "./MainStudentDetails";
-import { StudentContactDetails } from "./StudentContactDetails";
-import { StudentFamilyImmigrationHistory } from "./StudentFamilyImmigrationHistory";
-import { StudentPassportAndVisaDetails } from "./StudentPassportAndVisaDetails";
-import { StudentWorkExpResumePersonalStatementDetails } from "./StudentWorkExpResumePersonalStatementDetails";
 import { useMultiStepRender } from "../../Util/useMultiStepRender";
 import { onSnapshot } from "firebase/firestore";
 import { addStudent,checkStudentOnFS,getStudent,studentsCollection } from "../../Util/Firebase/Controller";
 import { UserContext } from "../../Components/UserContext";
 import { getAuth } from "firebase/auth";
+import { StudentContactDetails } from "../../Components/FormComps/StudentContactDetails";
+import { StudentFamilyImmigrationHistory } from "../../Components/FormComps/StudentFamilyImmigrationHistory";
+import { StudentPassportAndVisaDetails } from "../../Components/FormComps/StudentPassportAndVisaDetails";
+import { StudentWorkExpResumePersonalStatementDetails } from "../../Components/FormComps/StudentWorkExpResumePersonalStatementDetails";
+import { MainStudentDetails } from "../../Components/FormComps/MainStudentDetails";
 
 export type FormData = {
       uid: string | undefined,

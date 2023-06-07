@@ -98,7 +98,8 @@ function updateFields(fields: Partial<FormData>){
   
   async function searchHandel(keyword:string){
     console.log(` seach hndl fun ${keyword}`)
-    setsearchData(null)
+    if(keyword !=""){
+      setsearchData(null)
     setLoading(true)
     const value = await searchStudents(keyword)
     setLoading(false)
@@ -107,6 +108,8 @@ function updateFields(fields: Partial<FormData>){
     console.log(queryData.forEach((doc) => {
       console.log(doc.id, ' => ', doc.data());
   }))
+    }
+    
     
   }
   

@@ -3,7 +3,7 @@ import { Table } from "react-bootstrap";
 export function SearchResultsTable({...doc}){
 
     return <><br />
-    <h3>{doc.otherNames?`${doc.otherNames.charAt(0).toUpperCase() + doc.otherNames.slice(1)}'s`:"APPLICATION"} | BASIC DETAILS</h3><br />
+    <h3 style={{color:"#27443b"}}>{doc.otherNames?`${doc.otherNames.charAt(0).toUpperCase() + doc.otherNames.slice(1)}'s`:"APPLICATION"} | BASIC DETAILS</h3><br />
     <h4>Monash Record</h4>
       <Table>
         <tbody>
@@ -118,7 +118,7 @@ export function SearchResultsTable({...doc}){
         </tbody>
       </Table> 
       <br />
-    <h3>{doc.otherNames?`${doc.otherNames.charAt(0).toUpperCase() + doc.otherNames.slice(1)}'s`:"APPLICATION"} | CONTACT DETAILS</h3><br />
+    <h3 style={{color:"#27443b"}}>{doc.otherNames?`${doc.otherNames.charAt(0).toUpperCase() + doc.otherNames.slice(1)}'s`:"APPLICATION"} | CONTACT DETAILS</h3><br />
     <h5>Permanent Address</h5>
     <Table>
         <tbody>
@@ -178,7 +178,7 @@ export function SearchResultsTable({...doc}){
         </tbody>
       </Table>
       <br /><br />
-    <h3>{doc.otherNames?`${doc.otherNames.charAt(0).toUpperCase() + doc.otherNames.slice(1)}'s`:"APPLICATION"} | PASSPORT AND VISA DETAILS</h3><br />
+    <h3 style={{color:"#27443b"}}>{doc.otherNames?`${doc.otherNames.charAt(0).toUpperCase() + doc.otherNames.slice(1)}'s`:"APPLICATION"} | PASSPORT AND VISA DETAILS</h3><br />
     <Table>
       <tbody>
         <tr>
@@ -221,7 +221,7 @@ export function SearchResultsTable({...doc}){
         </tr>
       </tbody>
     </Table><br /><br />
-    <h3>{doc.otherNames?`${doc.otherNames.charAt(0).toUpperCase() + doc.otherNames.slice(1)}'s`:"APPLICATION"} | FAMILY IMMIGRATION HISTORY</h3>
+    <h3 style={{color:"#27443b"}}>{doc.otherNames?`${doc.otherNames.charAt(0).toUpperCase() + doc.otherNames.slice(1)}'s`:"APPLICATION"} | FAMILY IMMIGRATION HISTORY</h3>
       <br /><Table>
         <tbody>
           <tr>
@@ -324,7 +324,7 @@ export function SearchResultsTable({...doc}){
           </tr>
         </tbody>
       </Table><br />
-      <h3>{doc.otherNames?`${doc.otherNames.charAt(0).toUpperCase() + doc.otherNames.slice(1)}'s`:"APPLICATION"} | <br/>WORK EXPERIENCE/RESUME/PERSONAL STATEMENT</h3><br />
+      <h3 style={{color:"#27443b"}}>{doc.otherNames?`${doc.otherNames.charAt(0).toUpperCase() + doc.otherNames.slice(1)}'s`:"APPLICATION"} | <br/>WORK EXPERIENCE/RESUME/PERSONAL STATEMENT</h3><br />
       <Table>
         <tbody>
           <tr>

@@ -174,9 +174,22 @@ function updateFields(fields: Partial<FormData>){
     
 
   }
-
   function hendelClose(){
     setDisplayData(null)
+  }
+
+  const [qoute,setQuote] = useState()
+
+  function inspire(){
+    
+    fetch("https://type.fit/api/quotes")
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      setQuote(data);
+      console.log(data[0])
+    });
   }
 
     return(<><br />
@@ -203,7 +216,8 @@ function updateFields(fields: Partial<FormData>){
         </>
         :<SearchResultsTable {...displayData}/>:null}
         
-        </div>:<>hi</>}
+        </div>:<div style={{marginTop:"80px",padding:"0px 80px"}}><br /><h1 style={{fontWeight:"300",fontSize:"45px"}}>Hi {userContext.user?.displayName!=null? userContext.user?.displayName :"There"}!!</h1><h2>
+          Please use search bar to find the student you looking for =&gt;</h2><br /></div>}
           
           
         

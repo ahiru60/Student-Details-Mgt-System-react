@@ -1,8 +1,12 @@
 *{
   border-color: #487E6E;
-  font-size: 14px;
+  font-size: 14.3px;
+  color:#230f2c;
   
   
+}
+h1,h2,h4,h5{
+  color:#5d3f6b;
 }
 #searchResult:hover{
     background-color: rgb(224, 219, 219);

@@ -8,6 +8,8 @@ export type userContextType   ={
     setUser: any,
     studentDoc:any
     setStudentDoc:any
+    chosedResultData:any,
+    setChosedResultData : any
 }
 
 type UserContextProviderType ={
@@ -21,6 +23,7 @@ export const UserContextProvider =({children} :UserContextProviderType) =>{
     const [user,setUser] = useState<User| null>(null);
     const auth = getAuth();
     const [studentDoc,setStudentDoc] = useState()
+    const [chosedResultData,setChosedResultData] = useState()
     useEffect(onAuthStateChanged(auth,(currentUser)=>{
         if(currentUser){
             setUser(currentUser)
@@ -31,5 +34,5 @@ export const UserContextProvider =({children} :UserContextProviderType) =>{
         }
       }),[])
 
-    return <UserContext.Provider value={{user,setUser,studentDoc: studentDoc,setStudentDoc: setStudentDoc}}>{children}</UserContext.Provider>
+    return <UserContext.Provider value={{user,setUser,studentDoc: studentDoc,setStudentDoc: setStudentDoc,chosedResultData:chosedResultData,setChosedResultData:setChosedResultData}}>{children}</UserContext.Provider>
 }

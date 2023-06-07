@@ -71,7 +71,7 @@ export function StudentFamilyImmigrationHistory({
     updateFields} :FamilyImmigrationDetailsProps){
 
    return(<FormWrapper title={otherNames?`${otherNames}'s | FAMILY IMMIGRATION HISTORY`:"APPLICATION | FAMILY IMMIGRATION HISTORY"}><Form.Group>
-      <Form.Label>Are you married?</Form.Label>
+      <Form.Label>Are you married?<span style={{color:"red"}}>*</span></Form.Label>
       <div>
         <Form.Check inline label="Married" type="radio" name="maritalStatus" value="yes" checked={maritalStatus === 'yes'} onChange={e=> updateFields({maritalStatus:e.target.value})} autoFocus required/>
         <Form.Check inline label="Not Married" type="radio" name="maritalStatus" value="no" checked={maritalStatus === 'no'} onChange={e=> updateFields({maritalStatus:e.target.value})} />
@@ -106,7 +106,7 @@ export function StudentFamilyImmigrationHistory({
     </Form.Group>
 
     <Form.Group>
-      <Form.Label>Do you have relatives living in Australia?</Form.Label>
+      <Form.Label>Do you have relatives living in Australia?<span style={{color:"red"}}>*</span></Form.Label>
       <div>
         <Form.Check inline label="Yes" type="radio" name="haveRelativesCheck" value="yes" checked={haveRelativesCheck === 'yes'} onChange={e=> updateFields({haveRelativesCheck:e.target.value})} required/>
         <Form.Check inline label="No" type="radio" name="haveRelativesCheck" value="no" checked={haveRelativesCheck === 'no'} onChange={e=> updateFields({haveRelativesCheck:e.target.value})}/>
@@ -114,7 +114,7 @@ export function StudentFamilyImmigrationHistory({
     </Form.Group>
 
     <Form.Group>
-      <Form.Label>Have you, your partner or any dependents ever applied to migrate to any country?</Form.Label>
+      <Form.Label>Have you, your partner or any dependents ever applied to migrate to any country?<span style={{color:"red"}}>*</span></Form.Label>
       <div>
         <Form.Check inline label="Yes" type="radio" name="haveAppliedCheck" value="yes" checked={haveAppliedCheck === 'yes'} onChange={e=> updateFields({haveAppliedCheck:e.target.value})}required/>
         <Form.Check inline label="No" type="radio" name="haveAppliedCheck" value="no" checked={haveAppliedCheck === 'no'} onChange={e=> updateFields({haveAppliedCheck:e.target.value})}/>
@@ -122,30 +122,30 @@ export function StudentFamilyImmigrationHistory({
     </Form.Group>
 
     <h4>SECONDARY STUDIES</h4>
-    <span>(high school studies – Year 12). Please list your MOST RECENT qualification first</span>
+    <span>Please list your MOST RECENT qualification first</span>
 
     <Form.Group>
-      <Form.Label>Name of qualification:</Form.Label>
+      <Form.Label>Name of qualification:<span style={{color:"red"}}>*</span></Form.Label>
       <Form.Control type="text" name="secondaryStudyQualificationName" value={secondaryStudyQualificationName} onChange={e=> updateFields({secondaryStudyQualificationName:e.target.value})} required/>
     </Form.Group>
 
     <Form.Group>
-      <Form.Label>Name of School/Institute:</Form.Label>
+      <Form.Label>Name of School/Institute:<span style={{color:"red"}}>*</span></Form.Label>
       <Form.Control type="text" name="secondaryStudySchoolInstitutionName" value={secondaryStudySchoolInstitutionName} onChange={e=> updateFields({secondaryStudySchoolInstitutionName:e.target.value})} required/>
     </Form.Group>
 
     <Form.Group>
-      <Form.Label>Date Commenced:</Form.Label>
+      <Form.Label>Date Commenced:<span style={{color:"red"}}>*</span></Form.Label>
       <Form.Control type="date" name="secondaryStudyCommencedDate" value={secondaryStudyCommencedDate} onChange={e=> updateFields({secondaryStudyCommencedDate:e.target.value})} required/>
     </Form.Group>
 
     <Form.Group>
-      <Form.Label>Date Completed:</Form.Label>
+      <Form.Label>Date Completed:<span style={{color:"red"}}>*</span></Form.Label>
       <Form.Control type="date" name="secondaryStudyCompletedDate" value={secondaryStudyCompletedDate} onChange={e=> updateFields({secondaryStudyCompletedDate:e.target.value})} required/>
     </Form.Group>
 
     <Form.Group>
-      <Form.Label>In which country did you study this qualification?</Form.Label>
+      <Form.Label>In which country did you study this qualification?<span style={{color:"red"}}>*</span></Form.Label>
       <Form.Control as="select" name="secondaryStudyCountry" value={secondaryStudyCountry} onChange={e=> updateFields({secondaryStudyCountry:e.target.value})} required>
                 <option value="">Please Select</option>
                 <option value="Afghanistan">Afghanistan</option>
@@ -404,7 +404,7 @@ export function StudentFamilyImmigrationHistory({
     </Form.Group>
 
     <Form.Group>
-      <Form.Label>Is English the language of your instruction and assessment?</Form.Label>
+      <Form.Label>Is English the language of your instruction and assessment?<span style={{color:"red"}}>*</span></Form.Label>
       <div>
         <Form.Check inline label="Yes" type="radio" name="secondaryStudyEnglishMediumCheck" value="yes" checked={secondaryStudyEnglishMediumCheck === 'yes'} onChange={e=> updateFields({secondaryStudyEnglishMediumCheck:e.target.value})}required/>
         <Form.Check inline label="No" type="radio" name="secondaryStudyEnglishMediumCheck" value="no" checked={secondaryStudyEnglishMediumCheck === 'no'} onChange={e=> updateFields({secondaryStudyEnglishMediumCheck:e.target.value})}/>
@@ -412,7 +412,7 @@ export function StudentFamilyImmigrationHistory({
     </Form.Group>
 
     <Form.Group>
-      <Form.Label>Have you completed the above study?</Form.Label>
+      <Form.Label>Have you completed the above study?<span style={{color:"red"}}>*</span></Form.Label>
       <div>
         <Form.Check inline label="Yes" type="radio" name="secondaryStudyCompletedCheck" value="yes" checked={secondaryStudyCompletedCheck === 'yes'} onChange={e=> updateFields({secondaryStudyCompletedCheck:e.target.value})}required/>
         <Form.Check inline label="No" type="radio" name="secondaryStudyCompletedCheck" value="no" checked={secondaryStudyCompletedCheck === 'no'} onChange={e=> updateFields({secondaryStudyCompletedCheck:e.target.value})}/>
@@ -420,7 +420,7 @@ export function StudentFamilyImmigrationHistory({
     </Form.Group>
 
     <h4>POST SECONDARY STUDIES</h4>
-    <span>(high school studies – Year 12). Please list your MOST RECENT qualification first</span>
+    <span>Please list your MOST RECENT qualification first</span>
 
     <Form.Group>
       <Form.Label>Name of qualification:</Form.Label>

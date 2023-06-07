@@ -51,7 +51,7 @@ export function StudentWorkExpResumePersonalStatementDetails({
   }:WorkExpResumePersonalStatementDetailsProps){
    return(<FormWrapper title={otherNames?`${otherNames}'s | WORK EXPERIENCE/RESUME/PERSONAL STATEMENT`:"APPLICATION | WORK EXPERIENCE/RESUME/PERSONAL STATEMENT"}>
 <Form.Group>
-  <Form.Label>Do you have any relevant work experience you'd like to be considered for admissions?</Form.Label>
+  <Form.Label>Do you have any relevant work experience you'd like to be considered for admissions?<span style={{color:"red"}}>*</span></Form.Label>
   <div>
     <Form.Check inline label="Yes" type="radio" name="relevantWorkExperienceCheck" value="yes" checked={relevantWorkExperienceCheck === 'yes'} onChange={e=> updateFields({relevantWorkExperienceCheck:e.target.value})} autoFocus required/>
     <Form.Check inline label="No" type="radio" name="relevantWorkExperienceCheck" value="no" checked={relevantWorkExperienceCheck === 'no'} onChange={e=> updateFields({relevantWorkExperienceCheck:e.target.value})}/>
@@ -59,7 +59,7 @@ export function StudentWorkExpResumePersonalStatementDetails({
 </Form.Group>
 
 <Form.Group>
-  <Form.Label>Do you have a gap in studies and/or work history longer than 3 months?</Form.Label>
+  <Form.Label>Do you have a gap in studies and/or work history longer than 3 months?<span style={{color:"red"}}>*</span></Form.Label>
   <div>
     <Form.Check inline label="Yes" type="radio" name="studyBreakCheck" value="yes" checked={studyBreakCheck === 'yes'} onChange={e=> updateFields({studyBreakCheck:e.target.value})}required/>
     <Form.Check inline label="No" type="radio" name="studyBreakCheck" value="no" checked={studyBreakCheck === 'no'} onChange={e=> updateFields({studyBreakCheck:e.target.value})}/>
@@ -69,7 +69,7 @@ export function StudentWorkExpResumePersonalStatementDetails({
 <h4>ENGLISH PROFICIENCY</h4>
 
 <Form.Group>
-  <Form.Label>What is your first language?</Form.Label>
+  <Form.Label>What is your first language?<span style={{color:"red"}}>*</span></Form.Label>
   <Form.Control as="select" name="firstLanguage" value={firstLanguage} onChange={e=> updateFields({firstLanguage:e.target.value})} required>
       <option value="">Please Select</option>
       <option value="afrikaans">Afrikaans</option>
@@ -179,7 +179,7 @@ export function StudentWorkExpResumePersonalStatementDetails({
 </Form.Group>
 
 <Form.Group>
-  <Form.Label>Have you taken an English proficiency test within the last 24 months?</Form.Label>
+  <Form.Label>Have you taken an English proficiency test within the last 24 months?<span style={{color:"red"}}>*</span></Form.Label>
   <Form.Control as="select" name="englishProficiencyTest" value={englishProficiencyTest} onChange={e=> updateFields({englishProficiencyTest:e.target.value})} required>
     <option value="">Please Select</option>
     <option value="haveTaken">I have taken an English proficiency test (e.g., IELTS/TOEFL/PTE)</option>
@@ -205,7 +205,7 @@ export function StudentWorkExpResumePersonalStatementDetails({
 <h4>WORK EXPERIENCE</h4>
 
 <Form.Group>
-  <Form.Label>Do you wish to list any relevant work details?</Form.Label>
+  <Form.Label>Do you wish to list any relevant work details?<span style={{color:"red"}}>*</span></Form.Label>
   <div>
     <Form.Check inline label="Yes" type="radio" name="relevantWorkExperienceDetailsCheck" value="yes" checked={relevantWorkExperienceDetailsCheck === 'yes'} onChange={e=> updateFields({relevantWorkExperienceDetailsCheck:e.target.value})}required/>
     <Form.Check inline label="No" type="radio" name="relevantWorkExperienceDetailsCheck" value="no" checked={relevantWorkExperienceDetailsCheck === 'no'} onChange={e=> updateFields({relevantWorkExperienceDetailsCheck:e.target.value})}/>
@@ -215,7 +215,7 @@ export function StudentWorkExpResumePersonalStatementDetails({
 <h4>FINANCIAL SUPPORT</h4>
 
 <Form.Group>
-  <Form.Label>How are you planning to support your studies?</Form.Label>
+  <Form.Label>How are you planning to support your studies?<span style={{color:"red"}}>*</span></Form.Label>
   <Form.Control as="select" name="studyFundMethod" value={studyFundMethod} onChange={e=> updateFields({studyFundMethod:e.target.value})} required>
   <option value="">Please Select</option>
     <option value="personalFunds">Personal funds</option>
@@ -232,34 +232,34 @@ export function StudentWorkExpResumePersonalStatementDetails({
 </Form.Group>
 
 <Form.Group>
-  <Form.Label>Name of Parent/Guardian:</Form.Label>
+  <Form.Label>Name of Parent/Guardian:<span style={{color:"red"}}>*</span></Form.Label>
   <Form.Control type="text" name="parentGuardianName" value={parentGuardianName} onChange={e=> updateFields({parentGuardianName:e.target.value})} required/>
 </Form.Group>
 
 <Form.Group>
-  <Form.Label>Parent/Guardian's Mobile Number:</Form.Label>
+  <Form.Label>Parent/Guardian's Mobile Number:<span style={{color:"red"}}>*</span></Form.Label>
   <Form.Control type="text" name="parentGuardianMobileNumber" value={parentGuardianMobileNumber} onChange={e=> updateFields({parentGuardianMobileNumber:e.target.value})} required/>
 </Form.Group>
 
 <Form.Group>
-  <Form.Label>Parent/Guardian's Email:</Form.Label>
+  <Form.Label>Parent/Guardian's Email:<span style={{color:"red"}}>*</span></Form.Label>
   <Form.Control type="email" name="parentGuardianEmail" value={parentGuardianEmail} onChange={e=> updateFields({parentGuardianEmail:e.target.value.trim()})} required/>
 </Form.Group>
 
 <h4>ADDITIONAL QUESTIONS</h4>
 
 <Form.Group>
-  <Form.Label>Please explain how your course selection is related to your previous education and/or professional background. How will it satisfy your career aspirations?</Form.Label>
+  <Form.Label>Please explain how your course selection is related to your previous education and/or professional background. How will it satisfy your career aspirations?<span style={{color:"red"}}>*</span></Form.Label>
   <Form.Control as="textarea" name="careerAspirationNote" rows={4} maxLength={1000} value={careerAspirationNote} onChange={e=> updateFields({careerAspirationNote:e.target.value})} required/>
 </Form.Group>
 
 <Form.Group>
-  <Form.Label>Why have you chosen this University among other providers in Australia and overseas? Why have you chosen to study in this State of Australia?</Form.Label>
+  <Form.Label>Why have you chosen this University among other providers in Australia and overseas? Why have you chosen to study in this State of Australia?<span style={{color:"red"}}>*</span></Form.Label>
   <Form.Control as="textarea" name="universityChoiceNote" rows={4} maxLength={1000} value={universityChoiceNote} onChange={e=> updateFields({universityChoiceNote:e.target.value})} required/>
 </Form.Group>
 
 <Form.Group>
-  <Form.Label>Please indicate where you first heard about this University:</Form.Label>
+  <Form.Label>Please indicate where you first heard about this University:<span style={{color:"red"}}>*</span></Form.Label>
   <Form.Control as="select" name="directedMedia" value={directedMedia} onChange={e=> updateFields({directedMedia:e.target.value})} required>
   <option value="">Please Select</option>
     <option value="agent">Agent</option>

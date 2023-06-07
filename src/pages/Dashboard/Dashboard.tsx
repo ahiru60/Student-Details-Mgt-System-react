@@ -175,16 +175,21 @@ function updateFields(fields: Partial<FormData>){
 
   }
 
-    return(<>
-    {window.innerWidth}
+  function hendelClose(){
+    setDisplayData(null)
+  }
+
+    return(<><br />
     <div className="container" style={{padding:"0",color:"black"}}>
   <div className="row align-items-start">
     <div className="col w-100" style={{
-      overflow:"hidden",overflowY: "scroll",maxHeight:"48rem"
+      overflow:"hidden",overflowY: "scroll",maxHeight:"49.5rem"
     }}>
       
-      {displayData&& <div className="rounded"style={{border:"solid 1.4px  #487E6E",padding:"2rem"}}>
+      {displayData? <div className="rounded"style={{border:"solid 1px  #487E6E29",padding:"2rem",paddingTop:"1.5rem",backgroundColor:"white"}}>
+      <div style={{borderRadius:"3.4px",marginBottom:"0",marginTop:"0rem",display:"flex",justifyContent:"flex-end",cursor:"pointer"}} onClick={()=>{hendelClose()}}><span className="material-icons" style={{color:"#487E6E"}}>close</span></div>
       {loading2? <PulseLoader size={15} color="#487E6E"style={{height:"5px",display:"flex",justifyContent:"center"}}/>:<div style={{height:"5px"}}></div>}
+      
         <button className={editing?"btn btn-danger":"btn btn-light"} style={{borderRadius:"3.4px",marginBottom:"1.3rem",marginTop:"0rem"}} onClick={()=>{handelCancel()}}>{editing?"Cancel":"Edit"}</button>
         {editing&& <button className="btn btn-outline-dark" style={{border:"none",borderRadius:"3.4px",marginBottom:"1.3rem",marginTop:"0rem",marginLeft:"0.4rem",backgroundColor:"#487E6E"}} onClick={()=>{handelSave()}}>Save</button>}
         {displayData? editing? 
@@ -198,14 +203,14 @@ function updateFields(fields: Partial<FormData>){
         </>
         :<SearchResultsTable {...displayData}/>:null}
         
-        </div>}
+        </div>:<>hi</>}
           
           
         
       
       
     </div>
-    <div className="col " style={{maxWidth:"32vw",height:"80vh" ,}}>
+    <div className="col " style={{maxWidth:"32vw",height:"89vh" ,}}>
       <div style={{
           position:'relative',
           background:'white',

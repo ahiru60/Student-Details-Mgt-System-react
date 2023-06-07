@@ -65,19 +65,19 @@ const{steps,currentStepIndex,step, isFirstStep,back,next,isLastStep,goTo} = useM
   
  
 
-    return(<><Navbar className="navbar justify-content-center " data-bs-theme="dark" style={{backgroundColor:"#487E6E",minHeight:"70px"}}>
+    return(<div style={{backgroundColor:"#F9FBF7"}}><Navbar className="navbar justify-content-center " data-bs-theme="dark" style={{backgroundColor:"#487E6E",height:"58px"}}>
       <Nav variant="pills" activeKey={currentPage} className="navbar justify-content-end">
   
   {userContext.user?.uid== userContext.user?.uid/*"SfLgfs9KocYxbhpXkx8pL4hePlz2"*/?<> <Nav.Item className="table-hover">
-  {windowSize[0]> 500 &&<Nav.Link className="navbar navbar-brand text-light " style={{color:"white",fontSize:"28px",fontWeight:"300",marginRight:"0"}} onClick={()=>{goTo(1); localStorage.setItem("NAV_INDEX_SDM_APP","1")}} hidden={userContext.user == null? true : false} >Dashboard</Nav.Link>}
+  {windowSize[0]> 500 &&<Nav.Link className="navbar navbar-brand text-light " style={{color:"white",fontSize:"19px",fontWeight:"350",marginRight:"0"}} onClick={()=>{goTo(1); localStorage.setItem("NAV_INDEX_SDM_APP","1")}} hidden={userContext.user == null? true : false} >Dashboard</Nav.Link>}
   </Nav.Item>
   |<Nav.Item>
-  {windowSize[0]> 500 &&<Nav.Link className="navbar navbar-brand text-light " style={{color:"white",fontSize:"28px",fontWeight:"300",marginRight:"0"}} onClick={()=>{goTo(2);localStorage.setItem("NAV_INDEX_SDM_APP","2")}} hidden={userContext.user == null? true : false}>Application</Nav.Link>}
+  {windowSize[0]> 500 &&<Nav.Link className="navbar navbar-brand text-light " style={{color:"white",fontSize:"19px",fontWeight:"350",marginRight:"0"}} onClick={()=>{goTo(2);localStorage.setItem("NAV_INDEX_SDM_APP","2")}} hidden={userContext.user == null? true : false}>Application</Nav.Link>}
 </Nav.Item></>:<></>}
   
-  </Nav> {windowSize[0]> 963 && <button style={{backgroundColor:"#edb077",borderRadius:"5px",padding:"2px 10px",margin:"1px 1px",marginLeft:"18px", fontWeight:"200", fontSize:"17.5px", border:"none",height:"2.2rem",position:"absolute",right:"2.8vw" }} className="nav-link navbar-brand text-light" onClick={()=>logoutWithGoogle()} hidden={userContext.user == null? true : false}>Logout</button>}
-  {windowSize[0]< 963 && <button style={{backgroundColor:"#edb077",borderRadius:"5px",padding:"2px 10px",margin:"1px 1px",marginLeft:"18px", fontWeight:"200", fontSize:"17.5px", border:"none",height:"2.2rem",position:"absolute",left:"-1vw"}} className="nav-link navbar-brand text-light" onClick={()=>logoutWithGoogle()} hidden={userContext.user == null? true : false}>Logout</button>}
-      </Navbar>{step}</>)
+  </Nav> {windowSize[0]> 963 && <button style={{backgroundColor:"#edb077",padding:"2px 10px", fontWeight:"200", fontSize:"14.5px", border:"none",height:"100%",position:"absolute",right:"0" }} className="nav-link text-light" onClick={()=>logoutWithGoogle()} hidden={userContext.user == null? true : false}>Logout</button>}
+  {windowSize[0]< 963 && <button style={{backgroundColor:"#edb077",padding:"2px 10px",  fontWeight:"200", fontSize:"14.5px", border:"none",height:"100%",position:"absolute",left:"0"}} className="nav-link text-light" onClick={()=>logoutWithGoogle()} hidden={userContext.user == null? true : false}>Logout</button>}
+      </Navbar>{step}</div>)
 
       /*<nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
     <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>

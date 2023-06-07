@@ -204,12 +204,12 @@ function updateFields(fields: Partial<FormData>){
       {loading2? <PulseLoader size={15} color="#487E6E"style={{height:"5px",display:"flex",justifyContent:"center"}}/>:<div style={{height:"5px"}}></div>}
       
         <button className={editing?"btn btn-danger":"btn btn-light"} style={{borderRadius:"3.4px",marginBottom:"1.3rem",marginTop:"0rem"}} onClick={()=>{handelCancel()}}>{editing?"Cancel":"Edit"}</button>
-        {editing&& <button className="btn btn-outline-dark" style={{border:"none",borderRadius:"3.4px",marginBottom:"1.3rem",marginTop:"0rem",marginLeft:"0.4rem",backgroundColor:"#487E6E"}} onClick={()=>{handelSave()}}>Save</button>}
+        {editing&& <button className="btn btn btn-success" style={{border:"none",borderRadius:"3.4px",marginBottom:"1.3rem",marginTop:"0rem",marginLeft:"0.4rem"}} onClick={()=>{handelSave()}}>Save</button>}
         {displayData? editing? 
         <>{step}<br /><br /><div style={{display:"flex",justifyContent:"flex-end"}}>
         {!isFirstStep && <button className='btn btn-outline-dark' type="button" onClick={back}>Back</button>}
     
-        <button className={isLastStep ? 'btn btn-success': 'btn btn-dark' } style={{marginLeft:"0.5rem"}} onClick={!isLastStep? next:handelSave} type="submit">{!isLastStep ? 'Next':'Finish'}</button>
+        <button className={isLastStep ? 'btn btn-success': 'btn btn-dark' } style={{marginLeft:"0.5rem"}} onClick={!isLastStep? next:handelSave} type="submit">{!isLastStep ? 'Next':'Save'}</button>
         </div>
         {error && error!="success"? <><br /><Alert variant="danger">{error}</Alert></> : null}
         {error=="success"? <><br /><Alert variant="success">Form submitted successfully</Alert></>:null}

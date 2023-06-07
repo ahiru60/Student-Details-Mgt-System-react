@@ -89,9 +89,9 @@ export function MainStudentDetails({
             
                 <div className="--bs-info --bs-info-rgb">
                 <Form.Group className="mb-3">
-            <Form.Label autoFocus><p  >Do you have a Monash student ID number? <span style={{color:"red"}}>*</span></p></Form.Label>
+            <Form.Label ><p  >Do you have a Monash student ID number? <span style={{color:"red"}}>*</span></p></Form.Label>
             <div>
-                <Form.Check inline label="Yes" type="radio" name="monash-Id-check" value="yes" checked={monashIdCheck=== 'yes'} onChange={e=> {updateFields({monashIdCheck:e.target.value})}}required />
+                <Form.Check inline label="Yes" type="radio" name="monash-Id-check" value="yes" checked={monashIdCheck=== 'yes'} onChange={e=> {updateFields({monashIdCheck:e.target.value})}}required autoFocus/>
                 <Form.Check inline label="No" type="radio" name="monash-Id-check" value="no" checked={monashIdCheck=== 'no'} onChange={e=> {updateFields({monashIdCheck:e.target.value,monashId:""})}}/>
             </div>
         </Form.Group>

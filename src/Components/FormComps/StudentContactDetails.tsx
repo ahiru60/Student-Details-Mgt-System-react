@@ -60,8 +60,8 @@ export function StudentContactDetails({
    return(<FormWrapper title={otherNames?`${otherNames}'s | CONTACT DETAILS`:"APPLICATION | CONTACT DETAILS"}>
     <h4>Permanent Address</h4>
     <Form.Group>
-            <Form.Label autoFocus>Country and Region:<span style={{color:"red"}}>*</span></Form.Label>
-            <Form.Control as="select" name="countryOrRegion" value={countryOrRegion} onChange={e=> updateFields({countryOrRegion:e.target.value})}  required>
+            <Form.Label>Country and Region:<span style={{color:"red"}}>*</span></Form.Label>
+            <Form.Control as="select" name="countryOrRegion" value={countryOrRegion} onChange={e=> updateFields({countryOrRegion:e.target.value})}  required  autoFocus>
                 <option value="">Please Select</option>
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Aland Islands">Aland Islands</option>

@@ -29,5 +29,19 @@ h1,h2,h4,h5{
     position: absolute;
     right: 100px;
   }
+
+  @media only screen and (Max-width: 600px) {
+    /* For desktop: */
+    *{
+      font-size: 8px;
+      size: 5px;
+    }
+    input{
+      height: 15px;
+    }
+    p{
+      font-size: 1px;
+    }
+  }
   
   

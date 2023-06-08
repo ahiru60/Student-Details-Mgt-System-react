@@ -11,6 +11,6 @@ return <>
 <div style={{display:'grid',
 gap:'1rem .5rem',
 justifyContent:'center',
-gridTemplateColumns:'auto minmax(auto 100px)',padding:"0 70px"}}>{children}</div>
+gridTemplateColumns:'auto minmax(auto 100px)',padding:"0 10px"}}>{children}</div>
 </>
 }

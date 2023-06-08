@@ -63,6 +63,7 @@ function getFormValue(){
   const storedLocalValues = localStorage.getItem("SEACRH_RESULT_FORM_DATA_ON_UPDATE_SDM_APP")
   if(storedLocalValues){return JSON.parse(storedLocalValues)}
   //else if(studentDataDB){return  }
+  
   else{return null}
 }
 const [editing,setEditing]=useState(false);
@@ -108,6 +109,9 @@ function updateFields(fields: Partial<FormData>){
     console.log(queryData.forEach((doc) => {
       console.log(doc.id, ' => ', doc.data());
   }))
+    }
+    else{
+      setsearchData(null)
     }
     
     
@@ -164,9 +168,11 @@ function updateFields(fields: Partial<FormData>){
     setEditing(!editing)
   }
   function handelSave(){
+    localStorage.removeItem("SEACRH_RESULT_FORM_DATA_ON_UPDATE_SDM_APP")
     setLoading2(true)
     updateStudent(displayData.uid,displayData).then(
       ()=>{
+        searchHandel(searchKeyword)
         setLoading2(false)
         setEditing(false)
       }
@@ -174,7 +180,7 @@ function updateFields(fields: Partial<FormData>){
     
 
   }
-  function hendelClose(){
+  function handelClose(){
     setDisplayData(null)
   }
 
@@ -192,6 +198,12 @@ function updateFields(fields: Partial<FormData>){
     });
   }
 
+  const[lastupdated,setLastupdated] = useState(null)
+
+  useEffect(()=>{
+    setLastupdated(displayData?.lastUpdatedDate?.toDate().toLocaleString())
+  },[handelClick])
+
     return(<><br />
     <div className="container" style={{padding:"0",color:"black"}}>
   <div className="row align-items-start">
@@ -201,8 +213,9 @@ function updateFields(fields: Partial<FormData>){
       
       {displayData? <div className="rounded"style={{border:"solid 1px  #487E6E29",padding:"2rem",paddingTop:"1.5rem",backgroundColor:"white"}}>
       {loading2? <PulseLoader size={15} color="#487E6E"style={{height:"5px",display:"flex",justifyContent:"center"}}/>:<div style={{height:"5px"}}></div>}
-      
-        <button className={editing?"btn btn-danger":"btn btn-light"} style={{borderRadius:"3.4px",marginBottom:"1.3rem",marginTop:"0rem"}} onClick={()=>{handelCancel()}}>{editing?"Cancel":"Edit"}</button>
+        <div onClick={handelClose} style={{cursor:"pointer",float:"right"}}><span className="material-symbols-outlined">close</span></div>
+        <p style={{fontSize:"11px",color:"GrayText",fontWeight:"400",float:"right",marginRight:"1.5rem",marginTop:"0.14rem"}}>{lastupdated?"Last updated date "+lastupdated : displayData.createdDate? "Created date: "+displayData.createdDate.toDate().toLocaleString():""}</p>
+        <button className={editing?"btn btn-danger":"btn btn-outline-secondary"} style={{borderRadius:"3.4px",marginBottom:"1.3rem",marginTop:"0rem"}} onClick={()=>{handelCancel()}}>{editing?"Cancel":"Edit"}</button>
         {editing&& <button className="btn btn btn-success" style={{border:"none",borderRadius:"3.4px",marginBottom:"1.3rem",marginTop:"0rem",marginLeft:"0.4rem"}} onClick={()=>{handelSave()}}>Save</button>}
         {displayData? editing? 
         <>{step}<br /><br /><div style={{display:"flex",justifyContent:"flex-end"}}>
@@ -215,7 +228,7 @@ function updateFields(fields: Partial<FormData>){
         </>
         :<SearchResultsTable {...displayData}/>:null}
         
-        </div>:<div style={{marginTop:"80px",padding:"0px 80px"}}><br /><h1 style={{fontWeight:"300",fontSize:"45px"}}>Hi {userContext.user?.displayName!=null? userContext.user?.displayName :"There"}!!</h1><h2>
+        </div>:<div style={{marginTop:"80px",padding:"0px 80px"}}><br /><h1 style={{fontWeight:"300",fontSize:"45px"}}>Hi {getAuth().currentUser?.displayName!=null? getAuth().currentUser?.displayName :"There"}!!</h1><h2>
           Please use search bar to find the student you looking for =&gt;</h2><br /></div>}
           
           

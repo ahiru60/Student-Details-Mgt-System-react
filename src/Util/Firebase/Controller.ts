@@ -1,4 +1,4 @@
-import {collection,deleteDoc,doc,getDoc,getDocs,getFirestore,or,query,setDoc,where} from "firebase/firestore";
+import {collection,deleteDoc,doc,getDoc,getDocs,getFirestore,or,query,serverTimestamp,setDoc,where} from "firebase/firestore";
   import { NavigateFunction } from "react-router-dom";
   // This is tree shaking from firestore
   import { app } from "../Firebase/Firebase";
@@ -13,7 +13,13 @@ import {userContextType } from "../../Components/UserContext"
   // ADD A NEW DOCUMENT TO YOUR COLLECTION
   export const addStudent = async (studentData: FormData,userContext: userContextType,setError:any) => {
     
-    const newStudent = await setDoc(doc(studentsCollection,userContext.user?.uid), { ...studentData });
+    const merge ={
+      createdDate:serverTimestamp(),
+      lastUpdatedDate:"",
+      uid:userContext.user?.uid
+    }
+
+    const newStudent = await setDoc(doc(studentsCollection,userContext.user?.uid), { ...merge,...studentData });
     console.log(`The new student was created at ${newStudent}`);
     setError("success")
     console.log(studentData)
@@ -38,9 +44,15 @@ import {userContextType } from "../../Components/UserContext"
 
   // EDIT A DOCUMENT / DESCRIPTION
   export const updateStudent = async (id: string | undefined, docData: FormData) => {
+    var now =serverTimestamp()
+    const times ={
+      lastUpdatedDate:now
+    }
     const getStudent = doc(firestore, `students/${id}`);
-    await setDoc(getStudent, docData, { merge: true });
+    await setDoc(getStudent, {...docData,...times}, { merge: true });
     console.log("The value has been written to the database");
+    console.log({...times,...docData})
+    return {...times,...docData}
   };
   // DELETE A DOCUMENT IN YOUR COLLECTION
   export const deleteHotel = async (

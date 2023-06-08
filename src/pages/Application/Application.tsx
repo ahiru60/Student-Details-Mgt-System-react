@@ -328,12 +328,12 @@ const[exsistRecord,setExsistRecord] = useState(false)
     return (<><div style={{
           position:'relative',
           background:'white',
-          border: '1px solid black',
+          border: '1px solid #487E6E29',
           padding:"3%", paddingBottom:"1%",
           margin:'5% 15%', fontSize:'100%',
           maxWidth:'100%'
           }}
-          className="shadow rounded">
+          className="rounded">
         <Form onSubmit={onSubmit}>
         
           {step}

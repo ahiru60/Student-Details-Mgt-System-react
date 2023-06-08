@@ -200,7 +200,6 @@ function updateFields(fields: Partial<FormData>){
     }}>
       
       {displayData? <div className="rounded"style={{border:"solid 1px  #487E6E29",padding:"2rem",paddingTop:"1.5rem",backgroundColor:"white"}}>
-      <div style={{borderRadius:"3.4px",marginBottom:"0",marginTop:"0rem",display:"flex",justifyContent:"flex-end",cursor:"pointer"}} onClick={()=>{hendelClose()}}><span className="material-icons" style={{color:"#487E6E"}}>close</span></div>
       {loading2? <PulseLoader size={15} color="#487E6E"style={{height:"5px",display:"flex",justifyContent:"center"}}/>:<div style={{height:"5px"}}></div>}
       
         <button className={editing?"btn btn-danger":"btn btn-light"} style={{borderRadius:"3.4px",marginBottom:"1.3rem",marginTop:"0rem"}} onClick={()=>{handelCancel()}}>{editing?"Cancel":"Edit"}</button>

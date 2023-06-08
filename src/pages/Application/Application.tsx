@@ -2,7 +2,7 @@ import { useState, FormEvent, useEffect, useContext } from "react";
 import { Alert, Form } from 'react-bootstrap';
 import { useMultiStepRender } from "../../Util/useMultiStepRender";
 import { onSnapshot } from "firebase/firestore";
-import { addStudent,checkStudentOnFS,getStudent,studentsCollection } from "../../Util/Firebase/Controller";
+import { addStudent,checkStudentOnFS,getStudent,studentsCollection, updateStudent } from "../../Util/Firebase/Controller";
 import { UserContext } from "../../Components/UserContext";
 import { getAuth } from "firebase/auth";
 import { StudentContactDetails } from "../../Components/FormComps/StudentContactDetails";
@@ -238,7 +238,7 @@ export default function Application(){
 const localStoreFormData = localStorage.getItem("FORM_DATA_ON_UPDATE_SDM_APP")
 if(!localStoreFormData){
   getStudent(getAuth().currentUser?.uid).then(response=>{
-    console.log(response)
+    console.log(`getting user data ${response}`)
     localStorage.setItem("FORM_DATA_ON_UPDATE_SDM_APP",JSON.stringify(response))
     location.reload()
   }
@@ -305,12 +305,26 @@ const [data, setData] = useState(getFormValue);
    const context = {uid:userContext.user?.uid,
     displayname:`${parsedData.otherNames.toLowerCase()} ${parsedData.surname.toLowerCase()}`}
     const userDoc ={...data,...context}
-    userContext.user != null? await checkStudentOnFS(userContext.user && userContext.user.uid, userContext.setStudentDoc)? setError("Already submitted..!") : addStudent({...userDoc},userContext,setError):  setError("Error occured..!")
-    
+    userContext.user != null? await checkStudentOnFS(userContext.user && userContext.user.uid, userContext.setStudentDoc)? updateStudent(userContext.user.uid,data).then(()=>{setError("updated");console.log("updated")}) : addStudent({...userDoc},userContext,setError):  setError("Error occured..!")
+    checkExsistUser().then((res)=>{setExsistRecord(res)})
     //alert("mysql")
   }
+
+  
   
 }
+ function checkExsistUser(){
+
+  return checkStudentOnFS(userContext.user && userContext.user.uid, userContext.setStudentDoc)
+ 
+}
+const[exsistRecord,setExsistRecord] = useState(false)
+ useEffect(()=>{
+  console.log("haiya")
+  setTimeout(()=>{
+    checkExsistUser().then((res)=>{setExsistRecord(res)})
+  },1000)
+ },[onSubmit])
     return (<><div style={{
           position:'relative',
           background:'white',
@@ -332,10 +346,11 @@ const [data, setData] = useState(getFormValue);
     
           {!isFirstStep && <button className='btn btn-outline-dark' type="button" onClick={back}>Back</button>}
     
-          <button className={isLastStep ? 'btn btn-success': 'btn btn-dark' } type="submit">{!isLastStep ? 'Next':'Finish'}</button>
+          <button className={isLastStep ? 'btn btn-success': 'btn btn-dark' } type="submit">{!isLastStep ? 'Next': exsistRecord?"Update":"Finish"}</button>
           </div>
-          {error && error!="success"? <><br /><Alert variant="danger">{error}</Alert></> : null}
+          {error && error!="success"&&error!="updated"? <><br /><Alert variant="danger">{error}</Alert></> : null}
           {error=="success"? <><br /><Alert variant="success">Form submitted successfully</Alert></>:null}
+          {error=="updated"? <><br /><Alert variant="success">Form updated successfully</Alert></>:null}
           <div style={{
             marginTop:"3rem",
             position:'relative',

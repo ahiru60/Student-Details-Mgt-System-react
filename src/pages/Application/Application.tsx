@@ -10,6 +10,7 @@ import { StudentFamilyImmigrationHistory } from "../../Components/FormComps/Stud
 import { StudentPassportAndVisaDetails } from "../../Components/FormComps/StudentPassportAndVisaDetails";
 import { StudentWorkExpResumePersonalStatementDetails } from "../../Components/FormComps/StudentWorkExpResumePersonalStatementDetails";
 import { MainStudentDetails } from "../../Components/FormComps/MainStudentDetails";
+import { PulseLoader } from "react-spinners";
 
 export type FormData = {
       uid: string | undefined,
@@ -234,13 +235,18 @@ export default function Application(){
   
 
 } 
+const [loading,setLoading] = useState(false);
 
-const localStoreFormData = localStorage.getItem("FORM_DATA_ON_UPDATE_SDM_APP")
+useEffect(()=>{
+  const localStoreFormData = localStorage.getItem("FORM_DATA_ON_UPDATE_SDM_APP")
 if(!localStoreFormData){
+  setLoading(true)
   getStudent(getAuth().currentUser?.uid).then(response=>{
-    console.log(`getting user data ${response}`)
+    console.log(`getting user data ${response?.otherNames}`)
     localStorage.setItem("FORM_DATA_ON_UPDATE_SDM_APP",JSON.stringify(response))
-    location.reload()
+    setData({...response})
+    //location.reload()
+    setLoading(false)
   }
     
   ).catch(
@@ -249,13 +255,33 @@ if(!localStoreFormData){
     }
   )
 }
+},[])
+
+
+function refreshForm(){
+  setLoading(true)
+  getStudent(getAuth().currentUser?.uid).then(response=>{
+    console.log(`getting user data ${response?.otherNames}`)
+    localStorage.setItem("FORM_DATA_ON_UPDATE_SDM_APP",JSON.stringify(response))
+    //location.reload()
+    setData({...response})
+    setLoading(false)
+  }
+    
+  ).catch(
+    error=>{
+      console.log(error.message)
+    }
+  )
+
+}
 
   function getFormValue(){
   
   const sendingDataDB = {}
 
   const storedLocalValues = localStorage.getItem("FORM_DATA_ON_UPDATE_SDM_APP")
-  if(storedLocalValues){return JSON.parse(storedLocalValues)}
+  if(storedLocalValues != undefined && storedLocalValues){return JSON.parse(storedLocalValues)}
   //else if(studentDataDB){return  }
   else{return INITIAL_DATA}
 }
@@ -265,7 +291,7 @@ const [data, setData] = useState(getFormValue);
 
 
     useEffect(()=>{
-      data&& localStorage.setItem("FORM_DATA_ON_UPDATE_SDM_APP",JSON.stringify(data))
+      data?.monashIdCheck&& localStorage.setItem("FORM_DATA_ON_UPDATE_SDM_APP",JSON.stringify(data))
       //console.log("updating..")
     },[updateFields])
 
@@ -334,36 +360,38 @@ const[exsistRecord,setExsistRecord] = useState(false)
           maxWidth:'100%'
           }}
           className="rounded">
-        <Form onSubmit={onSubmit}>
-        
-          {step}
-          <div style={{
-            marginTop:'1rem',
-            display:'flex',
-            gap:".5rem",
-            justifyContent:'flex-end',
-          }}>
-    
-          {!isFirstStep && <button className='btn btn-outline-dark' type="button" onClick={back}>Back</button>}
-    
-          <button className={isLastStep ? 'btn btn-success': 'btn btn-dark' } type="submit">{!isLastStep ? 'Next': exsistRecord?"Update":"Finish"}</button>
-          </div>
-          {error && error!="success"&&error!="updated"? <><br /><Alert variant="danger">{error}</Alert></> : null}
-          {error=="success"? <><br /><Alert variant="success">Form submitted successfully</Alert></>:null}
-          {error=="updated"? <><br /><Alert variant="success">Form updated successfully</Alert></>:null}
-          <div style={{
-            marginTop:"3rem",
-            position:'relative',
-            bottom:'.7rem',
-            display:'flex',
-            justifyContent:"center",
-            fontSize:'1.1rem',
-            fontWeight:'700'
-          }}>
+            <div onClick={e=>{refreshForm()}}><span className="material-symbols-outlined" style={{cursor:"pointer",display:"flex",justifyContent:"flex-end"}}>refresh</span> </div>
             
-            {currentStepIndex+1}/{steps.length}
-          </div>
-        </Form>
+        {loading?<div style={{marginBottom:"1rem"}}><PulseLoader size={10} color="#487E6E"style={{height:"5px",display:"flex",justifyContent:"center"}}/></div>:<Form onSubmit={onSubmit}>
+        
+        {step}
+        <div style={{
+          marginTop:'1rem',
+          display:'flex',
+          gap:".5rem",
+          justifyContent:'flex-end',
+        }}>
+  
+        {!isFirstStep && <button className='btn btn-outline-dark' type="button" onClick={back}>Back</button>}
+  
+        <button className={isLastStep ? 'btn btn-success': 'btn btn-dark' } type="submit">{!isLastStep ? 'Next': exsistRecord?"Update":"Finish"}</button>
+        </div>
+        {error && error!="success"&&error!="updated"? <><br /><Alert variant="danger">{error}</Alert></> : null}
+        {error=="success"? <><br /><Alert variant="success">Form submitted successfully</Alert></>:null}
+        {error=="updated"? <><br /><Alert variant="success">Form updated successfully</Alert></>:null}
+        <div style={{
+          marginTop:"3rem",
+          position:'relative',
+          bottom:'.7rem',
+          display:'flex',
+          justifyContent:"center",
+          fontSize:'1.1rem',
+          fontWeight:'700'
+        }}>
+          
+          {currentStepIndex+1}/{steps.length}
+        </div>
+      </Form>}
         
         </div>
       </>)

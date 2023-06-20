@@ -1,13 +1,13 @@
 *{
-  border-color: #487E6E;
+  border-color: #4b937e;
   font-size: 14.3px;
-  color:#230f2c;
+  color:#26122f;
   
   
   
 }
 h1,h2,h4,h5{
-  color:#5d3f6b;
+  color:#6b298a;
 }
 #searchResult:hover{
     background-color: rgb(224, 219, 219);

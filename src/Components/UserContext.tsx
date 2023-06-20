@@ -1,5 +1,5 @@
 import { User, getAuth, onAuthStateChanged } from "firebase/auth";
-import { createContext, useState,useEffect } from "react";
+import { createContext, useState,useEffect, useRef } from "react";
 
 
 
@@ -24,6 +24,7 @@ export const UserContextProvider =({children} :UserContextProviderType) =>{
     const auth = getAuth();
     const [studentDoc,setStudentDoc] = useState()
     const [chosedResultData,setChosedResultData] = useState()
+    
     useEffect(onAuthStateChanged(auth,(currentUser)=>{
         if(currentUser){
             setUser(currentUser)

@@ -56,7 +56,7 @@ let e
 
 const{steps,currentStepIndex,step, isFirstStep,back,next,isLastStep,goTo} = useMultiStepRender([
   //<MainStudentDetails {...data} updateFields={updateFields}/>,
-  <PulseLoader size={20} color="#487E6E"style={{height:"5px",display:"flex",justifyContent:"center",marginTop:"470px"}}/>,
+  <PulseLoader size={20} color="#4b937e"style={{height:"5px",display:"flex",justifyContent:"center",marginTop:"470px"}}/>,
   //e? e: <></>
   <Dashboard></Dashboard>,
   <Application></Application>
@@ -66,15 +66,15 @@ const{steps,currentStepIndex,step, isFirstStep,back,next,isLastStep,goTo} = useM
   
  
 
-    return(<div style={{backgroundColor:"#F9FBF7"}}><Navbar className="navbar justify-content-center " data-bs-theme="dark" style={{backgroundColor:"#487E6E",height:"58px"}}>
+    return(<div style={{backgroundColor:"#F9FBF7"}}><Navbar className="navbar justify-content-center " data-bs-theme="dark" style={{backgroundColor:"#4b937e",height:"58px"}}>
       <Nav variant="pills" activeKey={currentPage} className="navbar justify-content-end">
   
-  {userContext.user?.uid== userContext.user?.uid/*"SfLgfs9KocYxbhpXkx8pL4hePlz2"*/?<> <Nav.Item className="table-hover">
+  <> <Nav.Item className="table-hover">
   {windowSize[0]> 500 ?<Nav.Link className="navbar navbar-brand text-light " style={{color:"white",fontSize:"19px",fontWeight:"350",marginRight:"0"}} onClick={()=>{goTo(1); localStorage.setItem("NAV_INDEX_SDM_APP","1")}} hidden={userContext.user == null? true : false} >Dashboard</Nav.Link>:<Nav.Link className="navbar navbar-brand text-light " style={{color:"white",fontSize:"14px",fontWeight:"350",marginRight:"0"}} onClick={()=>{goTo(1); localStorage.setItem("NAV_INDEX_SDM_APP","1")}} hidden={userContext.user == null? true : false} >Dashboard</Nav.Link>}
   </Nav.Item>
   |<Nav.Item>
   {windowSize[0]> 500 ?<Nav.Link className="navbar navbar-brand text-light " style={{color:"white",fontSize:"19px",fontWeight:"350",marginRight:"0"}} onClick={()=>{goTo(2);localStorage.setItem("NAV_INDEX_SDM_APP","2")}} hidden={userContext.user == null? true : false}>Application</Nav.Link>:<Nav.Link className="navbar navbar-brand text-light " style={{color:"white",fontSize:"14px",fontWeight:"350",marginRight:"0"}} onClick={()=>{goTo(2);localStorage.setItem("NAV_INDEX_SDM_APP","2")}} hidden={userContext.user == null? true : false}>Application</Nav.Link>}
-</Nav.Item></>:<></>}
+</Nav.Item></>
   
   </Nav> {windowSize[0]> 963 && <button style={{backgroundColor:"#edb077",padding:"2px 10px", fontWeight:"200", fontSize:"14.5px", border:"none",height:"100%",position:"absolute",right:"0" }} className="nav-link text-light" onClick={()=>logoutWithGoogle()} hidden={userContext.user == null? true : false}>Logout</button>}
   {windowSize[0]< 963 && <button style={{backgroundColor:"#edb077",padding:"2px 10px",  fontWeight:"200", fontSize:"14.5px", border:"none",height:"100%",position:"absolute",left:"0"}} className="nav-link text-light" onClick={()=>logoutWithGoogle()} hidden={userContext.user == null? true : false}>Logout</button>}

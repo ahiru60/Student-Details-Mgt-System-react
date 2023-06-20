@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useEffect, useState } from "react"
+import { FormEvent, useContext, useEffect, useRef, useState } from "react"
 import { UserContext } from "../../Components/UserContext"
 import { Alert, Button, Card, Fade, Form, Table } from "react-bootstrap"
 import { checkStaff, checkStudentOnFS, getStudent, searchStudents, updateStudent } from "../../Util/Firebase/Controller";
@@ -201,8 +201,25 @@ function updateFields(fields: Partial<FormData>){
   const[lastupdated,setLastupdated] = useState(null)
 
   useEffect(()=>{
-    setLastupdated(displayData?.lastUpdatedDate?.toDate().toLocaleString())
+    displayData?.lastUpdatedDate && setLastupdated(displayData?.lastUpdatedDate?.toDate().toLocaleString())
   },[handelClick])
+
+  const stateRef = useRef("")
+
+  function updateState(state:string){
+    setLoading2(true)
+    const studentState = {
+      studentProcessState: state
+    }
+    stateRef.current = state
+    const newData = {...displayData,...studentState}
+    updateStudent(displayData.uid,newData).then(
+      ()=>{setLoading2(false)}
+    );
+    
+
+  }
+
 
     return(<><br />
     <div className="container" style={{padding:"0",color:"black"}}>
@@ -214,9 +231,15 @@ function updateFields(fields: Partial<FormData>){
       {displayData? <div className="rounded"style={{border:"solid 1px  #487E6E29",padding:"2rem",paddingTop:"1.5rem",backgroundColor:"white"}}>
       {loading2? <PulseLoader size={15} color="#487E6E"style={{height:"5px",display:"flex",justifyContent:"center"}}/>:<div style={{height:"5px"}}></div>}
         <div onClick={handelClose} style={{cursor:"pointer",float:"right"}}><span className="material-symbols-outlined">close</span></div>
-        <p style={{fontSize:"11px",color:"GrayText",fontWeight:"400",float:"right",marginRight:"1.5rem",marginTop:"0.14rem"}}>{lastupdated?"Last updated date "+lastupdated : displayData.createdDate? "Created date: "+displayData.createdDate.toDate().toLocaleString():""}</p>
-        <button className={editing?"btn btn-danger":"btn btn-outline-secondary"} style={{borderRadius:"3.4px",marginBottom:"1.3rem",marginTop:"0rem"}} onClick={()=>{handelCancel()}}>{editing?"Cancel":"Edit"}</button>
-        {editing&& <button className="btn btn btn-success" style={{border:"none",borderRadius:"3.4px",marginBottom:"1.3rem",marginTop:"0rem",marginLeft:"0.4rem"}} onClick={()=>{handelSave()}}>Save</button>}
+        <p style={{fontSize:"11px",color:"GrayText",fontWeight:"400",float:"right",marginRight:"1.5rem",marginTop:"0.14rem"}}>{lastupdated?"Last updated on "+lastupdated : displayData.createdDate? "Created on: "+displayData.createdDate.toDate().toLocaleString():""}</p>
+        <button className={editing?"btn btn-danger":"btn btn-outline-secondary"} style={{borderRadius:"3.4px",marginBottom:"1.3rem",marginTop:"0rem",float:"left"}} onClick={()=>{handelCancel()}}>{editing?"Cancel":"Edit"}</button>
+        
+        {editing&& <button className="btn btn btn-success" style={{border:"none",borderRadius:"3.4px",marginBottom:"1.3rem",marginTop:"0rem",marginLeft:"0.4rem",float:"left"}} onClick={()=>{handelSave()}}>Save</button>}
+        <Form.Control as="select" value={stateRef.current} onChange={(e)=>{updateState(e.target.value);}}  style={{marginLeft:"15px",float:"left",width:"180px"}}>
+            <option value="hi">hi</option>
+            <option value="yo">yo</option>
+          </Form.Control>
+        <br /><br /><br />
         {displayData? editing? 
         <>{step}<br /><br /><div style={{display:"flex",justifyContent:"flex-end"}}>
         {!isFirstStep && <button className='btn btn-outline-dark' type="button" onClick={back}>Back</button>}

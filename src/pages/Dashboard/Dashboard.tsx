@@ -229,6 +229,7 @@ function updateFields(fields: Partial<FormData>){
     }}>
       
       {displayData? <div className="rounded"style={{border:"solid 1px  #487E6E29",padding:"2rem",paddingTop:"1.5rem",backgroundColor:"white"}}>
+      <div>
       {loading2? <PulseLoader size={15} color="#487E6E"style={{height:"5px",display:"flex",justifyContent:"center"}}/>:<div style={{height:"5px"}}></div>}
         <div onClick={handelClose} style={{cursor:"pointer",float:"right"}}><span className="material-symbols-outlined">close</span></div>
         <p style={{fontSize:"11px",color:"GrayText",fontWeight:"400",float:"right",marginRight:"1.5rem",marginTop:"0.14rem"}}>{lastupdated?"Last updated on "+lastupdated : displayData.createdDate? "Created on: "+displayData.createdDate.toDate().toLocaleString():""}</p>
@@ -240,6 +241,7 @@ function updateFields(fields: Partial<FormData>){
             <option value="yo">yo</option>
           </Form.Control>
         <br /><br /><br />
+      </div>
         {displayData? editing? 
         <>{step}<br /><br /><div style={{display:"flex",justifyContent:"flex-end"}}>
         {!isFirstStep && <button className='btn btn-outline-dark' type="button" onClick={back}>Back</button>}

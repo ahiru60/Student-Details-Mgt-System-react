@@ -21,7 +21,10 @@ export default function Header(){
 
   useEffect(()=>{var localStoreIndex =localStorage.getItem("NAV_INDEX_SDM_APP")
   console.log("page set triggered")
-   goTo(Number(localStoreIndex?localStoreIndex: 1)) },[])
+  userContext.isStaff == 'false'&& goTo(Number(2))
+  userContext.isStaff == 'loading'&& goTo(Number(0))
+  userContext.isStaff == 'true'&& goTo(Number(1))
+    },[userContext.isStaff])
 
   useEffect(() => {
     const handleWindowResize = () => {
@@ -70,11 +73,12 @@ const{steps,currentStepIndex,step, isFirstStep,back,next,isLastStep,goTo} = useM
       <Nav variant="pills" activeKey={currentPage} className="navbar justify-content-end">
   
   <> <Nav.Item className="table-hover">
-  {windowSize[0]> 500 ?<Nav.Link className="navbar navbar-brand text-light " style={{color:"white",fontSize:"19px",fontWeight:"350",marginRight:"0"}} onClick={()=>{goTo(1); localStorage.setItem("NAV_INDEX_SDM_APP","1")}} hidden={userContext.user == null? true : false} >Dashboard</Nav.Link>:<Nav.Link className="navbar navbar-brand text-light " style={{color:"white",fontSize:"14px",fontWeight:"350",marginRight:"0"}} onClick={()=>{goTo(1); localStorage.setItem("NAV_INDEX_SDM_APP","1")}} hidden={userContext.user == null? true : false} >Dashboard</Nav.Link>}
+  {userContext.isStaff == 'loading'? null :windowSize[0]> 500 ?<Nav.Link className="navbar navbar-brand text-light " style={{color:"white",fontSize:"19px",fontWeight:"350",marginRight:"0"}} onClick={()=>{goTo(1); localStorage.setItem("NAV_INDEX_SDM_APP","1")}} hidden={userContext.isStaff=='false'? true : false} >Dashboard</Nav.Link>:<Nav.Link className="navbar navbar-brand text-light " style={{color:"white",fontSize:"14px",fontWeight:"350",marginRight:"0"}} onClick={()=>{goTo(1); localStorage.setItem("NAV_INDEX_SDM_APP","1")}} hidden={userContext.user == null? true : false} >Dashboard</Nav.Link>}
   </Nav.Item>
-  |<Nav.Item>
-  {windowSize[0]> 500 ?<Nav.Link className="navbar navbar-brand text-light " style={{color:"white",fontSize:"19px",fontWeight:"350",marginRight:"0"}} onClick={()=>{goTo(2);localStorage.setItem("NAV_INDEX_SDM_APP","2")}} hidden={userContext.user == null? true : false}>Application</Nav.Link>:<Nav.Link className="navbar navbar-brand text-light " style={{color:"white",fontSize:"14px",fontWeight:"350",marginRight:"0"}} onClick={()=>{goTo(2);localStorage.setItem("NAV_INDEX_SDM_APP","2")}} hidden={userContext.user == null? true : false}>Application</Nav.Link>}
-</Nav.Item></>
+  <Nav.Item>
+  {windowSize[0]> 500 ?<Nav.Link className="navbar navbar-brand text-light " style={{color:"white",fontSize:"19px",fontWeight:"350",marginRight:"0"}} onClick={()=>{goTo(2);localStorage.setItem("NAV_INDEX_SDM_APP","2")}} hidden={userContext.isStaff=='false'? false : true}>Application</Nav.Link>:<Nav.Link className="navbar navbar-brand text-light " style={{color:"white",fontSize:"14px",fontWeight:"350",marginRight:"0"}} onClick={()=>{goTo(2);localStorage.setItem("NAV_INDEX_SDM_APP","2")}} hidden={userContext.user == null? true : false}>Application</Nav.Link>}
+
+  </Nav.Item></>
   
   </Nav> {windowSize[0]> 963 && <button style={{backgroundColor:"#edb077",padding:"2px 10px", fontWeight:"200", fontSize:"14.5px", border:"none",height:"100%",position:"absolute",right:"0" }} className="nav-link text-light" onClick={()=>logoutWithGoogle()} hidden={userContext.user == null? true : false}>Logout</button>}
   {windowSize[0]< 963 && <button style={{backgroundColor:"#edb077",padding:"2px 10px",  fontWeight:"200", fontSize:"14.5px", border:"none",height:"100%",position:"absolute",left:"0"}} className="nav-link text-light" onClick={()=>logoutWithGoogle()} hidden={userContext.user == null? true : false}>Logout</button>}

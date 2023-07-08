@@ -232,7 +232,7 @@ function updateFields(fields: Partial<FormData>){
       <div>
       {loading2? <PulseLoader size={15} color="#487E6E"style={{height:"5px",display:"flex",justifyContent:"center"}}/>:<div style={{height:"5px"}}></div>}
         <div onClick={handelClose} style={{cursor:"pointer",float:"right"}}><span className="material-symbols-outlined">close</span></div>
-        <p style={{fontSize:"11px",color:"GrayText",fontWeight:"400",float:"right",marginRight:"1.5rem",marginTop:"0.14rem"}}>{lastupdated?"Last updated on "+lastupdated : displayData.createdDate? "Created on: "+displayData.createdDate.toDate().toLocaleString():""}</p>
+        <p style={{fontSize:"11px",color:"GrayText",fontWeight:"400",float:"right",marginRight:"1.5rem",marginTop:"0.14rem"}}>{lastupdated?"Last updated on "+lastupdated : displayData.createdDate? "Created on: "+displayData?.createdDate?.toDate().toLocaleString():""}</p>
         <button className={editing?"btn btn-danger":"btn btn-outline-secondary"} style={{borderRadius:"3.4px",marginBottom:"1.3rem",marginTop:"0rem",float:"left"}} onClick={()=>{handelCancel()}}>{editing?"Cancel":"Edit"}</button>
         
         {editing&& <button className="btn btn btn-success" style={{border:"none",borderRadius:"3.4px",marginBottom:"1.3rem",marginTop:"0rem",marginLeft:"0.4rem",float:"left"}} onClick={()=>{handelSave()}}>Save</button>}
